@@ -2,7 +2,7 @@
   <div class="container">
     <div class="expense-card">
       <span class="expense-label">Expenses</span>
-      <span class="expense-value">R$ 50,00</span>
+      <span class="expense-value">R$ 400,00</span>
     </div>
     <div class="expense-item-header">
       <div class="expense-item-title">
@@ -20,6 +20,36 @@
       </div>
       <span class="tag">#sanepar</span>
     </div>
+
+    <div class="expense-item-header">
+      <div class="expense-item-title">
+        <span class="expense-item-title-label">Amanhã</span>
+        <span class="expense-item-title-value">R$ 32,43</span>
+      </div>
+      <div class="expense-item">
+        <span class="expense-item-label">Posto Tigrão</span>
+        <span class="expense-item-value">R$ 32,43</span>
+      </div>
+      <span class="tag">#combustivel</span>
+    </div>
+
+    <div class="expense-item-header">
+      <div class="expense-item-title">
+        <span class="expense-item-title-label">Demais</span>
+        <span class="expense-item-title-value">R$ 65,47</span>
+      </div>
+      <div class="expense-item">
+        <span class="expense-item-label">Supermercado Polo</span>
+        <span class="expense-item-value">R$ 45,47</span>
+      </div>
+      <span class="tag">#mercado</span>
+      <div class="expense-item">
+        <span class="expense-item-label">Supermercado Patão</span>
+        <span class="expense-item-value">R$ 20,00</span>
+      </div>
+      <span class="tag">#mercado</span>
+    </div>
+
   </div>
 </template>
 

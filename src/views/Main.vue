@@ -2,14 +2,14 @@
   <div class="container">
     <div class="balance-card">
       <span class="balance-label">Balance</span>
-      <span class="balance-value">R$ 100,00</span>
+      <span class="balance-value">R$ 50,00</span>
     </div>
       <router-link
         :to="{ name: 'Incomes', params: { incomeId: 1 } }"
       >
       <div class="income-card">
         <span class="income-label">Incomes</span>
-        <span class="income-value">R$ 150,00</span>
+        <span class="income-value">R$ 550,00</span>
       </div>
     </router-link>
     <router-link
@@ -17,7 +17,7 @@
     >
       <div class="expense-card">
         <span class="expense-label">Expenses</span>
-        <span class="expense-value">R$ 50,00</span>
+        <span class="expense-value">R$ 400,00</span>
       </div>
     </router-link>
   </div>

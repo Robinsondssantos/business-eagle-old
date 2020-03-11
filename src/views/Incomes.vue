@@ -2,7 +2,7 @@
   <div class="container">
     <div class="income-card">
       <span class="income-label">Incomes</span>
-      <span class="income-value">R$ 150,00</span>
+      <span class="income-value">R$ 550,00</span>
     </div>
   </div>
 </template>
