@@ -4,14 +4,22 @@
       <span class="balance-label">Balance</span>
       <span class="balance-value">R$ 100,00</span>
     </div>
-    <div class="income-card">
-      <span class="income-label">Income</span>
-      <span class="income-value">R$ 150,00</span>
-    </div>
-    <div class="expense-card">
-      <span class="expense-label">Expense</span>
-      <span class="expense-value">R$ 50,00</span>
-    </div>
+      <router-link
+        :to="{ name: 'Incomes', params: { incomeId: 1 } }"
+      >
+      <div class="income-card">
+        <span class="income-label">Incomes</span>
+        <span class="income-value">R$ 150,00</span>
+      </div>
+    </router-link>
+    <router-link
+      :to="{ name: 'Expenses', params: {  expenseId: 1 } }"
+    >
+      <div class="expense-card">
+        <span class="expense-label">Expenses</span>
+        <span class="expense-value">R$ 50,00</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -22,21 +30,6 @@ export default {
 </script>
 
 <style scoped>
-
-  .container {
-    max-width: 760px;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin: 80px auto;
-  }
-
-  @media only screen and (max-width: 600px) {
-    .container {
-      margin: 80px 20px;
-    }
-  }
 
   .balance-card {
     display: flex;
@@ -65,6 +58,7 @@ export default {
     justify-content: space-between;
     border-bottom: 1px solid #eee;
     padding: 20px 0 20px 0;
+    cursor: pointer;
   }
 
   .income-label {
@@ -82,6 +76,7 @@ export default {
     border-bottom: 1px solid #eee;
     padding: 20px 0 20px 0;
     margin-bottom: 20px;
+    cursor: pointer;
   }
 
   .expense-label {
