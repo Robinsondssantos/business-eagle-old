@@ -17,7 +17,7 @@
     >
       <div class="expense-card">
         <span class="expense-label">Expenses</span>
-        <span class="expense-value">R$ 400,00</span>
+        <span class="expense-value">R$ 500,00</span>
       </div>
     </router-link>
   </div>
