@@ -13,7 +13,7 @@
       </div>
     </router-link>
     <router-link
-      :to="{ name: 'Expenses', params: {  expenseId: 1 } }"
+      :to="{ name: 'Movements', params: {  expenseId: 1 } }"
     >
       <div class="expense-card">
         <span class="expense-label">Expenses</span>
