@@ -1,14 +1,24 @@
 <template>
   <div class="container">
+    <div class="month-info">
+      <span>Março</span>
+    </div>
     <div class="expense-card">
-      <span class="expense-label">Expenses</span>
+      <span class="expense-label">Despesas</span>
       <span class="expense-value">R$ 500,00</span>
     </div>
+
+    <div class="expense-item-header">
+      <div class="expense-item-title">
+        <span class="expense-item-title-label paid">Pagas</span>
+        <span class="expense-item-title-value paid">R$ 50,00</span>
+      </div>
+    </div>    
   
     <div class="expense-item-header">
       <div class="expense-item-title">
         <span class="expense-item-title-label overdue">Atrasadas</span>
-        <span class="expense-item-title-value overdue">R$ 100,00</span>
+        <span class="expense-item-title-value overdue">R$ 50,00</span>
       </div>
       <!-- <div class="expense-item">
         <span class="expense-item-label">Droga Raia</span>
@@ -157,6 +167,8 @@
     background: #eee;
   }
 
-
+  .paid {
+    color: #77cc77;
+  }  
 
 </style>

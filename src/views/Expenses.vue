@@ -1,18 +1,33 @@
 <template>
   <div class="container">
-    <div class="expense-card">
-      <span class="expense-label">Expenses</span>
+    <div class="month-info">
+      <span>Março</span>
+    </div>    
+    <div class="card">
+      <span class="expense-label">Despesas</span>
       <span class="expense-value">R$ 500,00</span>
     </div>
+
+    <div class="expense-item-header">
+      <div class="expense-item-title">
+        <span class="expense-item-title-label paid">Pagas</span>
+        <span class="expense-item-title-value paid">R$ 50,00</span>
+      </div>
+      <div class="expense-item">
+        <span class="expense-item-label">Bar do Zé</span>
+        <span class="expense-item-value">R$ 50,00</span>
+      </div>
+      <span class="tag">#cerveja</span>      
+    </div>       
   
     <div class="expense-item-header">
       <div class="expense-item-title">
         <span class="expense-item-title-label overdue">Atrasadas</span>
-        <span class="expense-item-title-value overdue">R$ 100,00</span>
+        <span class="expense-item-title-value overdue">R$ 50,00</span>
       </div>
       <div class="expense-item">
         <span class="expense-item-label">Droga Raia</span>
-        <span class="expense-item-value">R$ 100,00</span>
+        <span class="expense-item-value">R$ 50,00</span>
       </div>
       <span class="tag">#farmacia</span>
     </div>
@@ -46,7 +61,7 @@
       <span class="tag">#combustivel</span>
     </div>
 
-      <div class="expense-item-header">
+    <div class="expense-item-header">
       <div class="expense-item-title">
         <span class="expense-item-title-label">Quinta</span>
         <span class="expense-item-title-value">R$ 10,00</span>
@@ -80,11 +95,16 @@
 
 <style scoped>
 
-  .expense-card {
+  .tag {
+    font-size: 12px;
+    color: #111;
+    font-style: italic;
+  }
+
+  .card {
     display: flex;
     flex-direction: column;
-    /* border-bottom: 1px solid #eee; */
-    padding: 20px 0 20px 0;
+    padding: 20px 0 20px 0;    
   }
 
   .expense-label {
@@ -143,12 +163,6 @@
     color: #777;
   }
 
-  .tag {
-    font-size: 12px;
-    color: #111;
-    font-style: italic;
-  }
-
   .overdue {
     color: #ff7777;
   }
@@ -157,6 +171,16 @@
     background: #eee;
   }
 
+  .paid {
+    color: #77cc77;
+  }
+  
+  .paid-value {
+    text-decoration: line-through;
+  }
 
+  .paid-label {
+    text-decoration: line-through;
+  }
 
 </style>

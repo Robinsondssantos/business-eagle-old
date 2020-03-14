@@ -50,4 +50,12 @@
     }
   }
 
+  .month-info {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    color: #bbb;
+    /* font-weight: bold; */
+  }
+
 </style>

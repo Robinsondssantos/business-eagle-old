@@ -1,22 +1,25 @@
 <template>
   <div class="container">
+    <div class="month-info">
+      <span>Março</span>
+    </div>    
     <div class="balance-card">
-      <span class="balance-label">Balance</span>
+      <span class="balance-label">Saldo</span>
       <span class="balance-value">R$ 50,00</span>
     </div>
       <router-link
         :to="{ name: 'Incomes', params: { incomeId: 1 } }"
       >
       <div class="income-card">
-        <span class="income-label">Incomes</span>
+        <span class="income-label">Receitas</span>
         <span class="income-value">R$ 550,00</span>
       </div>
     </router-link>
     <router-link
-      :to="{ name: 'Movements', params: {  expenseId: 1 } }"
+      :to="{ name: 'Expenses', params: {  expenseId: 1 } }"
     >
       <div class="expense-card">
-        <span class="expense-label">Expenses</span>
+        <span class="expense-label">Despesas</span>
         <span class="expense-value">R$ 500,00</span>
       </div>
     </router-link>
@@ -85,6 +88,6 @@ export default {
 
   .expense-value {
     color: #ff0000;
-  }
+  } 
 
 </style>
