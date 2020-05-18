@@ -1,12 +1,6 @@
-// import express from 'express';
+import app from './App';
+import serverConfig from './config/server';
 
-// const app = express()
-// const port = 3000
+const port = serverConfig.port
 
-// app.get('/', (req, res) => res.send('Hello World!'))
-
-// app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
-
-import App from './App';
-
-App.listen();
+app.listen(port, () => console.log(`Listening on port: ${port}`));
