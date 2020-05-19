@@ -18,7 +18,8 @@
   }
 
   html, body, #app {
-    min-height: 100%;
+    height: 100%;
+    width: 100%;    
   }
 
   body {
@@ -33,6 +34,7 @@
 
   button {
     cursor: pointer;
+    border: none;
   }
 
   .container {
@@ -56,6 +58,41 @@
     font-size: 12px;
     color: #bbb;
     /* font-weight: bold; */
+  }
+
+  form {
+    padding: 40px
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #eee;
+  }
+  
+  .btn {
+    padding: 10px;
+    height: 50px;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+
+  .btn-primary {
+    /* background-color: #0747a6; */
+    background-color: #07295a;
   }
 
 </style>
