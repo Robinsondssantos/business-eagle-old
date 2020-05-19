@@ -1,6 +1,9 @@
+import User from '../models/User';
+
 class UserController {
   async store(req, res) {
-    res.send('Hello World!');
+    const user = await User.create(req.body);
+    return res.json(user);
   }
 }
 

@@ -4,9 +4,9 @@ module.exports = {
   host: 'localhost',
   port: 5432,
   logging: true,
-  database: 'postgres',
+  database: 'business_eagle',
   username: 'postgres',
-  password: 'centralizer',
+  password: 'postgres',
   define: {
     timestamps: true,
     undercored: true,
