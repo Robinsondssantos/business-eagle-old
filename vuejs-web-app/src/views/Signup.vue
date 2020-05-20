@@ -3,6 +3,12 @@
     <div class="panel-signin">
       <form>
         <div class="form-group">
+          <input class="form-control" type="text" name="first_name" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="last_name" placeholder="Last name" required>
+        </div>             
+        <div class="form-group">
           <input class="form-control" type="text" name="email" placeholder="E-mail" required>
         </div>
         <div class="form-group">
@@ -19,11 +25,13 @@
 <script>
 export default {
   data () {
-    return  {
+    return {
+      first_name: '',
+      last_name: '',
       email: '',
       password: ''
     }
-  } 
+  }
 }
 </script>
 
