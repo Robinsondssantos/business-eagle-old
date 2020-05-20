@@ -35,6 +35,19 @@ export default {
           email: credential.email,
           password: credential.password
         })
+          .then(response => {
+            resolve(response)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
+    },
+    logOff ({ commit }) {
+      return new Promise((resolve, reject) => {
+        localStorage.clear()
+      })
         .then(response => {
           resolve(response)
         })
@@ -42,19 +55,6 @@ export default {
           reject(err)
         })
         .finally(() => {})
-      })
-    },
-    logOff ({ commit }) {
-      return new Promise((resolve, reject) => {
-        localStorage.clear()
-      })
-      .then(response => {
-        resolve(response)
-      })
-      .catch(err => {
-        reject(err)
-      })
-      .finally(() => {})
     }
   }
 }

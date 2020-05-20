@@ -15,7 +15,7 @@
           <input class="form-control" type="password" name="password" placeholder="Password" required>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" type="submit" style="margin-top: 22px; color: #ccc;">ENTER</button>
+          <button class="btn btn-primary btn-block" type="submit" style="margin-top: 22px; color: #ccc;">CREATE</button>
         </div>
       </form>
     </div>

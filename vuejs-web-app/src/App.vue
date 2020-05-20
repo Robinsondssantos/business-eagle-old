@@ -23,7 +23,7 @@
   }
 
   body {
-    background: #0747a6;
+    background: #004cb2;
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -80,6 +80,7 @@
     height: 50px;
     border-radius: 2px;
     transition: opacity 0.2s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
 
   .btn:hover {

@@ -11,6 +11,11 @@ const routes = [
     component: Main
   },
   {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue'),
+  },
+  {
     path: '/incomes',
     name: 'Incomes',
     component: () => import('../views/Incomes.vue'),
@@ -22,6 +27,12 @@ const routes = [
     component: () => import('../views/Expenses.vue'),
     props: true
   },
+  {
+    path: '/expense_types',
+    name: 'ExpenseTypes',
+    component: () => import('../views/ExpenseTypes.vue'),
+    props: true
+  },  
   {
     path: '/signin',
     name: 'Signin',
