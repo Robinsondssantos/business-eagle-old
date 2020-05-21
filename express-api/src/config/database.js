@@ -9,7 +9,7 @@ module.exports = {
   password: 'postgres',
   define: {
     timestamps: true,
-    undercored: true,
-    undercoredAll: true
+    underscored: true,
+    underscoredAll: true
   }
 }

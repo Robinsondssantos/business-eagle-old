@@ -1,27 +1,51 @@
 import jwt from 'jsonwebtoken';
-
+import * as Yup from 'yup';
 import User from '../models/User';
 import authConfig from '../../config/auth';
 
 class SessionController {
   async store(req, res) {
+    const schema = Yup.object().shape({
+      email: Yup.string()
+        .email()
+        .max(50)
+        .required(),
+      password: Yup.string()
+        .min(6)
+        .max(30)
+        .required()
+    })
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400)
+        .json({ errorCode: '003', errorMessage: 'Validation fails' });      
+    }
+
     const { email, password } = req.body;
 
-    const user = await User.findOne({
-      where: { email }
-    });
+    let userExists = null;
 
-    if (!user) {
+    try {
+      userExists = await User.findOne({
+        where: { email }
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500)
+        .json({ errorCode: '004', errorMessage: 'Something wrong' });      
+    }
+
+    if (!userExists) {
       return res.status(401)
         .json({ errorCode: '001', errorMessage: 'User not found' })
     }
 
-    if (!(await user.checkPassword(password))) {
+    if (!(await userExists.checkPassword(password))) {
       return res.status(401)
         .json({ errorCode: '002', errorMessage: 'Password does not match' });
     }
 
-    const { id, name } = user;
+    const { id, name } = userExists;
 
     return res.json({
       user: {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import axiosConfig from '../../config/api'
-import authorizationInterceptor from './interceptors'
+import authorizationInterceptor from './interceptors/authorization'
 
 class Axios {
   constructor () {

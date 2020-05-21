@@ -29,6 +29,7 @@ export default {
     }
   },
   actions: {
+    // eslint-disable-next-line no-unused-vars
     session ({ commit }, credential) {
       return new Promise((resolve, reject) => {
         api.post('session', {
@@ -44,17 +45,20 @@ export default {
           .finally(() => {})
       })
     },
+    // eslint-disable-next-line no-unused-vars
     logOff ({ commit }) {
+      // eslint-disable-next-line no-unused-vars
       return new Promise((resolve, reject) => {
         localStorage.clear()
       })
-        .then(response => {
-          resolve(response)
-        })
-        .catch(err => {
-          reject(err)
-        })
-        .finally(() => {})
+        // .then(response => {
+        //   // eslint-disable-next-line no-undef
+        //   resolve(response)
+        // })
+        // .catch(err => {
+        //   reject(err)
+        // })
+        // .finally(() => {})
     }
   }
 }
