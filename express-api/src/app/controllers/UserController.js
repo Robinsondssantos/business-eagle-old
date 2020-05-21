@@ -4,30 +4,31 @@ import User from '../models/User';
 class UserController {
   async store(req, res) {
     const schema = Yup.object().shape({
-      first_name: Yup.string()
-        .max(50)
-        .required(),
-      last_name: Yup.string()
-        .max(50)
-        .required(),
-      phone: Yup.string()
-        .max(14)
-        .matches(/^[0-9]+$/)
-        .required(),
-      email: Yup.string()
-        .email()
-        .max(50)
-        .required(),
       password: Yup.string()
         .min(6)
         .max(30)
-        .required()
+        .required('password is required'),      
+      email: Yup.string()
+        .email()
+        .max(50)
+        .required('email is required'),      
+      phone: Yup.string()
+        .max(14)
+        .matches(/^[0-9]+$/)
+        .required('phone is required'),      
+      last_name: Yup.string()
+        .max(50)
+        .required('last_name is required'),      
+      first_name: Yup.string()
+        .max(50)
+        .required('first_name is required')
     });
 
-    if (!(await schema.isValid(req.body))) {
-      // TODO: Need improve the error message
+    try {
+      await schema.validate(req.body);
+    } catch (err) {
       return res.status(400)
-        .json({ errorCode: '003', errorMessage: 'Validation fails' });
+        .json({ errorCode: '003', errorMessage: err.message });
     }
 
     const { email } = req.body;
@@ -41,7 +42,7 @@ class UserController {
     } catch (err) {
       console.log(err);
       return res.status(500)
-        .json({ errorCode: '004', errorMessage: 'Something wrong1' });
+        .json({ errorCode: '004', errorMessage: 'Something wrong' });
     }
 
     if (userExists) {

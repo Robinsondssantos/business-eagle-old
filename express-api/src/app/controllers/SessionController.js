@@ -6,19 +6,21 @@ import authConfig from '../../config/auth';
 class SessionController {
   async store(req, res) {
     const schema = Yup.object().shape({
-      email: Yup.string()
-        .email()
-        .max(50)
-        .required(),
       password: Yup.string()
         .min(6)
         .max(30)
-        .required()
-    })
+        .required('password is required'),      
+      email: Yup.string()
+        .email()
+        .max(50)
+        .required('email is required')
+    });
 
-    if (!(await schema.isValid(req.body))) {
+    try {
+      await schema.validate(req.body);
+    } catch (err) {
       return res.status(400)
-        .json({ errorCode: '003', errorMessage: 'Validation fails' });      
+        .json({ errorCode: '003', errorMessage: err.message });
     }
 
     const { email, password } = req.body;
