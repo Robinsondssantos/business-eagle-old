@@ -1,15 +1,33 @@
 <template>
   <div class="container-signin">
     <div class="panel-signin">
-      <form>
+      <form @submit.prevent=signin>
         <div class="form-group">
-          <input class="form-control" type="text" name="email" placeholder="E-mail" required>
+          <input
+            v-model="email" 
+            class="form-control" 
+            type="text" 
+            name="email" 
+            placeholder="E-mail" 
+            required
+        >
         </div>
         <div class="form-group">
-          <input class="form-control" type="password" name="password" placeholder="Password" required>
+          <input
+            v-model="password" 
+            class="form-control" 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            required
+          >
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" type="submit" style="margin-top: 22px; color: #ccc;">ENTER</button>
+          <button 
+            class="btn btn-primary btn-block" 
+            type="submit" 
+            style="margin-top: 22px; color: #ccc;"
+          >ENTER</button>
         </div>
       </form>
     </div>
@@ -22,6 +40,21 @@ export default {
     return  {
       email: '',
       password: ''
+    }
+  },
+  methods: {
+    signin () {
+      this.$store.dispatch('session', {
+        email: this.email,
+        password: this.password
+      })
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => {
+          console.log('err:', err)
+        })
+        .finally(() => {})
     }
   } 
 }

@@ -89,7 +89,7 @@ export default {
           console.log('result:', result)
         })
         .catch(err => {
-          console.log('error:', err)
+          console.log('err:', err)
         })
         .finally(() => {})
     }
