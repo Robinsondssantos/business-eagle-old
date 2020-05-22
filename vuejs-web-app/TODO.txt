@@ -7,3 +7,4 @@
 7 - Test navbar
 8 - Create postgres docker database using Dockerfile
 9 - Add modal (Dialog) https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_modal
+10 - Add navbar https://www.w3schools.com/css/css_navbar_horizontal.asp
