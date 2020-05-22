@@ -3,3 +3,6 @@
 3 - https://www.w3schools.com/w3css/w3css_modal.asp
 4 - https://www.w3schools.com/howto/howto_css_modals.asp
 5 - Add user name in session credential
+6 - Add sidenav
+7 - Test navbar
+8 - Create postgres docker database using Dockerfile
