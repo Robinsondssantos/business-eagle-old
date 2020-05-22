@@ -47,12 +47,13 @@ class SessionController {
         .json({ errorCode: '002', errorMessage: 'Password does not match' });
     }
 
-    const { id, name } = userExists;
+    const { id, first_name, last_name } = userExists;
 
     return res.json({
       user: {
         id,
-        name,
+        first_name,
+        last_name,
         email,
       },
       token: jwt.sign({ id }, authConfig.secret, {
