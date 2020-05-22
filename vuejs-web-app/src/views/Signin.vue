@@ -24,10 +24,15 @@
         </div>
         <div class="form-group">
           <button 
-            class="btn btn-primary btn-block" 
+            class="btn btn-primary btn-block btn-icon" 
             type="submit" 
             style="margin-top: 22px; color: #ccc;"
-          >ENTER</button>
+          >
+            <div v-if="loading" class="spinner"></div>
+            <div v-else>
+              ENTRAR
+            </div>
+          </button>
         </div>
       </form>
     </div>
@@ -38,12 +43,14 @@
 export default {
   data () {
     return  {
+      loading: false,
       email: '',
       password: ''
     }
   },
   methods: {
     signin () {
+      this.loading = true
       this.$store.dispatch('session', {
         email: this.email,
         password: this.password
@@ -54,7 +61,9 @@ export default {
         .catch(err => {
           console.log('err:', err)
         })
-        .finally(() => {})
+        .finally(() => {
+          this.loading = false
+        })
     }
   } 
 }
@@ -75,4 +84,24 @@ export default {
     max-width: 440px;
     border-radius: 8px;
   }
+
+  .spinner {
+    height: 2rem;
+    width: 2rem;
+    border: solid .14em rgba(255, 255, 255, 0.65);
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border .75s linear infinite;
+  }  
+
+  @keyframes spinner-border {
+    to { transform: rotate(360deg); }
+  }
+
+  .btn-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }    
+
 </style>
