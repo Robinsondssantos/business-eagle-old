@@ -17,30 +17,30 @@ const routes = [
         component: () => import('../views/Dashboard.vue'),
       },
       {
-        path: '/incomes',
+        path: 'incomes',
         name: 'Incomes',
         component: () => import('../views/Incomes.vue'),
         props: true,
       },
       {
-        path: '/expenses',
+        path: 'expenses',
         name: 'Expenses',
         component: () => import('../views/Expenses.vue'),
         props: true,
       },
       {
-        path: '/expense_types',
+        path: 'expense_types',
         name: 'ExpenseTypes',
         component: () => import('../views/ExpenseTypes.vue'),
         props: true,
       },
       {
-        path: '/expensesSummary',
+        path: 'expensesSummary',
         name: 'ExpensesSummary',
         component: () => import('../views/ExpensesSummary.vue')
       },
       {
-        path: '/about',
+        path: 'about',
         name: 'About',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

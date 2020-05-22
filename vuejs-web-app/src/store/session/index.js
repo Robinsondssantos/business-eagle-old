@@ -54,15 +54,9 @@ export default {
       // eslint-disable-next-line no-unused-vars
       return new Promise((resolve, reject) => {
         localStorage.clear()
+        commit('clearSession')
+        resolve()
       })
-        // .then(response => {
-        //   // eslint-disable-next-line no-undef
-        //   resolve(response)
-        // })
-        // .catch(err => {
-        //   reject(err)
-        // })
-        // .finally(() => {})
     }
   }
 }

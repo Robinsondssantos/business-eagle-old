@@ -71,6 +71,7 @@ export default {
 
 <style scoped>
   .container-signin {
+    background: #004cb2;
     padding-top: 180px;
     padding-left: 15px;
     padding-right: 15px;
@@ -102,6 +103,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-  }    
+  }  
 
 </style>

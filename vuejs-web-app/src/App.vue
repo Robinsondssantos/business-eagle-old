@@ -22,8 +22,9 @@
     width: 100%;    
   }
 
-  body {
-    background: #004cb2;
+  body {    
+    /* background: #ebf5ff; */
+    background: #004cb2;    
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -92,7 +93,7 @@
   }
 
   .btn-primary {
-    /* background-color: #0747a6; */
+    color: rgba(255, 255, 255, 0.90);
     background-color: #07295a;
   }
 
