@@ -55,15 +55,15 @@ export default {
         email: this.email,
         password: this.password
       })
-        .then(result => {
-          console.log('result:', result)
+        .then(() => {
+          if (this.$route.query.redirect) {
+            this.$router.push(this.$route.query.redirect)
+          } else {
+            this.$router.push('/')
+          }
         })
-        .catch(err => {
-          console.log('err:', err)
-        })
-        .finally(() => {
-          this.loading = false
-        })
+        .catch(err => console.log(err))
+        .finally(() => { this.loading = false })
     }
   } 
 }

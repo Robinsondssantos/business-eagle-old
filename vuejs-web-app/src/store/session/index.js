@@ -36,8 +36,12 @@ export default {
           email: credential.email,
           password: credential.password
         })
-          .then(response => {
-            resolve(response)
+          .then(result => {
+            localStorage.setItem('email', result.data.user.email)
+            localStorage.setItem('id', result.data.user.id)
+            localStorage.setItem('token', result.data.token)
+            commit('setSession', result.data)
+            resolve(result.data)
           })
           .catch(err => {
             reject(err)
