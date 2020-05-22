@@ -6,3 +6,4 @@
 6 - Add sidenav
 7 - Test navbar
 8 - Create postgres docker database using Dockerfile
+9 - Add modal (Dialog) https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_modal
