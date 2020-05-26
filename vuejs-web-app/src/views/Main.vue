@@ -1,22 +1,59 @@
 <template>
-  <div class="container">
-    <div class="painel-main">
-      <div>
-        <button
-          class="btn btn-primary btn-main"
-          @click="addExpense"
-        >
-          Add Expense
-        </button>
+  <div>
+    <div class="container">
+      <div class="painel-main">
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="goToAddProvidersAndCustomersRoute"
+          >
+            Add Provider/Customer
+          </button>
+        </div>        
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="goToAddExpenseRoute"
+          >
+            Add Expense
+          </button>
+        </div>
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="goToAddExpenseTypeRoute"
+          >
+            Add Expense Type
+          </button>
+        </div>        
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="goToAddIncomeRoute"
+          >
+            Add Income
+          </button>
+        </div>
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="goToAddIncomeTypeRoute"
+          >
+            Add Income Type
+          </button>
+        </div>                  
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="logOff"
+          >
+            Logoff
+          </button>
+        </div>
       </div>
-      <div>
-        <button
-          class="btn btn-primary btn-main"
-          @click="logOff"
-        >
-          Logoff
-        </button>
-      </div>
+    </div>
+    <div>
+      <router-view />
     </div>
   </div>
 </template>
@@ -26,10 +63,25 @@ export default {
   data () {
     return {}
   },
+  created () {
+    console.log('created - main')
+  },
   methods: {
-    addExpense () {
-      console.log('add expense')
+    goToAddProvidersAndCustomersRoute () {
+      this.$router.push('providersAndCustomers')
+    },    
+    goToAddExpenseRoute () {
+      this.$router.push('expenses')
     },
+    goToAddIncomeRoute () {
+      this.$router.push('incomes')
+    },
+    goToAddExpenseTypeRoute () {
+      this.$router.push('expense_types')
+    },
+    goToAddIncomeTypeRoute () {
+      this.$router.push('income_types')
+    },         
     logOff () {
       this.$store.dispatch('logOff')
         .then(() => this.$router.push('/signin'))
@@ -37,6 +89,8 @@ export default {
   }
 }
 </script>
+
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal
 
 <style scoped>
   .painel-main {
