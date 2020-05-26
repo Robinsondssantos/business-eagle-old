@@ -84,25 +84,6 @@ export default {
     text-align: center;
     max-width: 440px;
     border-radius: 8px;
-  }
-
-  .spinner {
-    height: 2rem;
-    width: 2rem;
-    border: solid .14em rgba(255, 255, 255, 0.65);
-    border-right-color: transparent;
-    border-radius: 50%;
-    animation: spinner-border .75s linear infinite;
-  }  
-
-  @keyframes spinner-border {
-    to { transform: rotate(360deg); }
-  }
-
-  .btn-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }  
+  } 
 
 </style>

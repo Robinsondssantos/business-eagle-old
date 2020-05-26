@@ -1,12 +1,31 @@
 <template>
   <div class="container">
     <div class="panel-dashboard">
-      <form>
+      <div class="form-group">
+        Expense Type
+      </div>
+      <form @submit.prevent="createExpenseType">
         <div class="form-group">
-          <input class="form-control" type="text" name="description" placeholder="Description">
+          <input 
+            v-model="description"
+            class="form-control"
+            type="text" 
+            name="description" 
+            placeholder="Description"
+            required
+          >
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" type="submit" style="margin-top: 22px; color: #ccc;">SAVE</button>
+          <button 
+            class="btn btn-primary btn-block" 
+            type="submit" 
+            style="margin-top: 22px; color: #ccc;"
+          >
+            <div v-if="loading" class="spinner"></div>
+            <div v-else>
+              SAVE
+            </div>
+          </button>
         </div>
       </form>
     </div>
@@ -16,7 +35,21 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      loading: false,
+      description: ''
+    }
+  },
+  methods: {
+    createExpenseType () {
+      this.loading = true
+      this.$store.dispatch('createExpenseType', {
+        description: this.description
+      })
+        .then(() => {})
+        .catch(err => console.log(err))
+        .finally(() => { this.loading = false })
+    }
   }
 }
 </script>
