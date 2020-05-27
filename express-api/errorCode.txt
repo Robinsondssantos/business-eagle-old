@@ -1,0 +1,6 @@
+{ errorCode: '001', errorMessage: 'User not found' }
+{ errorCode: '002', errorMessage: 'Password does not match' }
+{ errorCode: '003', errorMessage: err.message }
+{ errorCode: '004', errorMessage: 'Something wrong' }
+{ errorCode: '005', errorMessage: 'User already exists' }
+{ errorCode: '006', errorMessage: 'Something wrong' }

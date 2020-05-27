@@ -26,7 +26,7 @@ class UserController {
 
     try {
       await schema.validate(req.body);
-    } catch (err) {
+    } catch(err) {
       return res.status(400)
         .json({ errorCode: '003', errorMessage: err.message });
     }
@@ -50,17 +50,14 @@ class UserController {
         .json({ errorCode: '005', errorMessage: 'User already exists' });
     }
 
-    let newUser = null;
-
     try {
-      newUser = await User.create(req.body);
+      const newUser = await User.create(req.body);
+      return res.json(newUser);
     } catch (err) {
       console.log(err);
       return res.status(500)
         .json({ errorCode: '006', errorMessage: 'Something wrong' });
     }
-
-    return res.json(newUser);
   }
 }
 
