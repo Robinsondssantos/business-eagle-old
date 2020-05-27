@@ -25,8 +25,8 @@ export default {
       return new Promise((resolve, reject) => {
         api.get('expenses')
           .then(result => {
-            commit('setExpenses', result)
-            resolve(result)
+            commit('setExpenses', result.data)
+            resolve(result.data)
           })
           .catch(err => {
             reject(err)

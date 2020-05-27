@@ -33,6 +33,19 @@ export default {
           })
           .finally(() => {})
       })
+    },
+    createExpenseType ({ commit }, expenseType) {
+      return new Promise((resolve, reject) => {
+        api.post('expense_types', expenseType)
+          .then(result => {
+            commit('setExpenseType', result.data)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
     }
   }
 }

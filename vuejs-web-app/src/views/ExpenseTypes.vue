@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
           <button 
-            class="btn btn-primary btn-block" 
+            class="btn btn-primary btn-block btn-icon" 
             type="submit" 
             style="margin-top: 22px; color: #ccc;"
           >
