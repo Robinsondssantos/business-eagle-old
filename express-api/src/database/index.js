@@ -1,8 +1,13 @@
 import Sequelize from 'sequelize';
 import User from '../app/models/User';
+import ExpenseType from '../app/models/ExpenseType';
+import IncomeType from '../app/models/IncomeType';
+
 import databaseConfig from '../config/database';
 
 const models = [
+  ExpenseType,
+  IncomeType,
   User
 ];
 
