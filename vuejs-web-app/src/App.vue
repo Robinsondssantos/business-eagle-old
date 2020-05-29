@@ -78,7 +78,7 @@
   
   .btn {
     padding: 10px;
-    height: 50px;
+    /* height: 50px; */
     border-radius: 2px;
     transition: opacity 0.2s;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);

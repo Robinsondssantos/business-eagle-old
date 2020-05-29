@@ -53,7 +53,7 @@
         </div>
         <div class="form-group">
           <button 
-            class="btn btn-primary btn-block" 
+            class="btn btn-primary btn-block btn-signup" 
             type="submit" 
             style="margin-top: 22px; color: #ccc;"
           >CREATE</button>
@@ -113,4 +113,8 @@ export default {
     max-width: 440px;
     border-radius: 8px;
   }
+
+  .btn-signup {
+    height: 50px;    
+  } 
 </style>

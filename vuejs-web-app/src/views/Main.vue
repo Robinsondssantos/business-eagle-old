@@ -95,10 +95,11 @@ export default {
 <style scoped>
   .painel-main {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .btn-main {
-    margin: 10px;
+    margin: 5px;
     height: 40px;
     /* background: #004cb2; */
     font-weight: 600;

@@ -36,7 +36,10 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      name: '',
+      type: '',
+    }
   },
   created () {
     console.log('created')

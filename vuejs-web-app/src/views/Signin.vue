@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <button 
-            class="btn btn-primary btn-block btn-icon" 
+            class="btn btn-primary btn-block btn-icon btn-signin" 
             type="submit" 
             style="margin-top: 22px; color: #ccc;"
           >
@@ -84,6 +84,10 @@ export default {
     text-align: center;
     max-width: 440px;
     border-radius: 8px;
+  }
+
+  .btn-signin {
+    height: 50px;    
   } 
 
 </style>
