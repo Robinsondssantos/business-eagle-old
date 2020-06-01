@@ -1,6 +1,7 @@
 <template>
   <div class="container-signin">
     <div class="panel-signin">
+      <span>{{ error }}</span>
       <form @submit.prevent=signin>
         <div class="form-group">
           <input
@@ -44,6 +45,7 @@ export default {
   data () {
     return  {
       loading: false,
+      error: '',
       email: '',
       password: ''
     }
@@ -62,7 +64,7 @@ export default {
             this.$router.push('/')
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => this.error = err)
         .finally(() => { this.loading = false })
     }
   } 

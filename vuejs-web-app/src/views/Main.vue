@@ -41,7 +41,15 @@
           >
             Add Income Type
           </button>
-        </div>                  
+        </div>
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="gotToExpenseTypeTableRoute"
+          >
+            List Expense Type
+          </button>
+        </div>                            
         <div>
           <button
             class="btn btn-primary btn-main"
@@ -78,6 +86,9 @@ export default {
     },
     goToAddExpenseTypeRoute () {
       this.$router.push('expense_types')
+    },
+    gotToExpenseTypeTableRoute () {
+      this.$router.push('expense_type_table')
     },
     goToAddIncomeTypeRoute () {
       this.$router.push('income_types')

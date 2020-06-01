@@ -42,6 +42,12 @@ export default new Router({
           props: true,
         },
         {
+          path: 'expense_type_table',
+          name: 'ExpenseTypeTable',
+          component: () => import('../views/ExpenseTypeTable.vue'),
+          props: true,
+        },        
+        {
           path: 'expensesSummary',
           name: 'ExpensesSummary',
           component: () => import('../views/ExpensesSummary.vue')
