@@ -44,7 +44,7 @@
     border-radius: 4px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    margin: 80px auto;
+    margin: 60px auto;
   }
 
   @media only screen and (max-width: 600px) {
@@ -79,7 +79,7 @@
   .btn {
     padding: 10px;
     /* height: 50px; */
-    border-radius: 2px;
+    border-radius: 3px;
     transition: opacity 0.2s;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }

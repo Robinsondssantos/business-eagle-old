@@ -17,15 +17,7 @@
           >
             Add Expense
           </button>
-        </div>
-        <div>
-          <button
-            class="btn btn-primary btn-main"
-            @click="goToAddExpenseTypeRoute"
-          >
-            Add Expense Type
-          </button>
-        </div>        
+        </div>      
         <div>
           <button
             class="btn btn-primary btn-main"
@@ -37,17 +29,17 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToAddIncomeTypeRoute"
+            @click="goToExpenseTypeTableRoute"
           >
-            Add Income Type
+            List Expense Type
           </button>
         </div>
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="gotToExpenseTypeTableRoute"
+            @click="goToIncomeTypeTableRoute"
           >
-            List Expense Type
+            List Income Type
           </button>
         </div>                            
         <div>
@@ -84,15 +76,12 @@ export default {
     goToAddIncomeRoute () {
       this.$router.push('incomes')
     },
-    goToAddExpenseTypeRoute () {
-      this.$router.push('expense_types')
-    },
-    gotToExpenseTypeTableRoute () {
+    goToExpenseTypeTableRoute () {
       this.$router.push('expense_type_table')
     },
-    goToAddIncomeTypeRoute () {
-      this.$router.push('income_types')
-    },         
+    goToIncomeTypeTableRoute () {
+      this.$router.push('income_type_table')
+    },     
     logOff () {
       this.$store.dispatch('logOff')
         .then(() => this.$router.push('/signin'))

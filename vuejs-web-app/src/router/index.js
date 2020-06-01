@@ -28,6 +28,11 @@ export default new Router({
           name: 'IncomeTypes',
           component: () => import('../views/IncomeTypes.vue'),
           props: true,
+        },
+        {
+          path: 'income_type_table',
+          name: 'IncomeTypeTable',
+          component: () => import('../views/IncomeTypeTable.vue'),
         },        
         {
           path: 'expenses',

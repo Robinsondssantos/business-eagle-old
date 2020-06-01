@@ -2,14 +2,14 @@
   <div class="container">
     <div class="panel-table">
       <div>
-        Expense Type Table
+        Income Type Table
       </div>
       <div>
         <button
           class="btn btn-primary"
-          @click="goToAddExpenseTypeRoute"
+          @click="goToAddIncomeTypeRoute"
         >
-          Add Expense Type
+          Add Income Type
         </button>
       </div>
     </div>
@@ -42,15 +42,15 @@ export default {
     }
   },
   created () {
-    this.fetchExpenseTypes()
+    this.fetchIncomeTypes()
   },
   methods: {
-    goToAddExpenseTypeRoute () {
-      this.$router.push('expense_types')
+    goToAddIncomeTypeRoute () {
+      this.$router.push('income_types')
     },
-    fetchExpenseTypes () {
+    fetchIncomeTypes () {
       this.loading = true
-      this.$store.dispatch('fetchExpenseTypes')
+      this.$store.dispatch('fetchIncomeTypes')
         .then(result => {
           console.log('result:', result)
           this.data = result
@@ -74,10 +74,10 @@ export default {
     padding: 8px;
   }
 
-  .panel-table {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
+ .panel-table {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin-bottom: 30px;
+ }
 </style>
