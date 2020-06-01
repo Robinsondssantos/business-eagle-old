@@ -97,6 +97,11 @@
     background-color: #07295a;
   }
 
+  .btn-secondary {
+    color: rgba(255, 255, 255, 0.90);
+    background-color: #0056ce;
+  }
+
   .spinner {
     height: 2rem;
     width: 2rem;

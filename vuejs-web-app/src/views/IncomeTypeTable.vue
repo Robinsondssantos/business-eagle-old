@@ -2,11 +2,11 @@
   <div class="container">
     <div class="panel-table">
       <div>
-        Income Type Table
+        Income Types
       </div>
       <div>
         <button
-          class="btn btn-primary"
+          class="btn btn-secondary"
           @click="goToAddIncomeTypeRoute"
         >
           Add Income Type

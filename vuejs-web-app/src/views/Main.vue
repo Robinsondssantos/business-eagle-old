@@ -31,7 +31,7 @@
             class="btn btn-primary btn-main"
             @click="goToExpenseTypeTableRoute"
           >
-            List Expense Type
+            Expense Types
           </button>
         </div>
         <div>
@@ -39,12 +39,12 @@
             class="btn btn-primary btn-main"
             @click="goToIncomeTypeTableRoute"
           >
-            List Income Type
+            Income Types
           </button>
         </div>                            
         <div>
           <button
-            class="btn btn-primary btn-main"
+            class="btn btn-primary btn-main btn-main-secondary"
             @click="logOff"
           >
             Logoff
@@ -106,6 +106,11 @@ export default {
     color: #777;
     background: #ddd;
     border-radius: 5px;    
+  }
+
+  .btn-main-secondary {
+    color: rgba(255, 255, 255, 0.90);
+    background: #0056ce;;
   }
 
 </style>

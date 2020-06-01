@@ -2,11 +2,11 @@
   <div class="container">
     <div class="panel-table">
       <div>
-        Expense Type Table
+        Expense Types
       </div>
       <div>
         <button
-          class="btn btn-primary"
+          class="btn btn-secondary"
           @click="goToAddExpenseTypeRoute"
         >
           Add Expense Type
