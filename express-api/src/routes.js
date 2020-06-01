@@ -7,6 +7,7 @@ import IncomeTypeController from './app/controllers/IncomeTypeController';
 
 import authMiddleware from './app/middlewares/auth';
 import customHeaders from './app/middlewares/customHeader';
+import IncomeType from './app/models/IncomeType';
 
 const routes = new Router();
 
@@ -17,7 +18,10 @@ routes.post('/users', UserController.store);
 
 routes.use(authMiddleware);
 
+routes.get('/expense_types', ExpenseTypeController.index);
 routes.post('/expense_types', ExpenseTypeController.store);
+
+routes.get('/income_types', IncomeTypeController.index);
 routes.post('/income_types', IncomeTypeController.store);
 
 export default routes;
