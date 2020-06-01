@@ -24,6 +24,7 @@
 export default {
   data () {
     return {
+      loading: false,
       columns: ['id', 'description'],
       data: [
         { id: 1, description: 'Energia Elétrica' },
@@ -31,6 +32,15 @@ export default {
         { id: 3, description: 'Telefone fixo' },
         { id: 4, description: 'Água' },
       ],
+    }
+  },
+  methods: {
+    fetchExpenseTypes () {
+      this.loading = true
+      this.$store.dispatch('fetchExpenseTypes')
+        .then(() => {})
+        .catch(err => console.log(err))
+        .finally(() => { this.loading = false })
     }
   }
 }
