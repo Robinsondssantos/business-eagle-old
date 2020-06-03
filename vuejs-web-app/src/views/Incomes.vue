@@ -1,107 +1,84 @@
 <template>
   <div class="container">
-    <div class="month-info">
-      <span>Março</span>
-    </div>    
-    <div class="card">
-      <span class="income-label">Receitas</span>
-      <span class="income-value">R$ 550,00</span>
+    <div class="panel-table">
+      <div>
+        Incomes
+      </div>
+      <div>
+        <button
+          class="btn btn-secondary"
+          @click="goToAddIncomeRoute"
+        >
+          Add Income
+        </button>
+      </div>
     </div>
-
-    <div class="income-item-header">
-      <div class="income-item-title">
-        <span class="income-item-title-label received">Recebidas</span>
-        <span class="income-item-title-value received">R$ 550,00</span>
-      </div>
-      <div class="income-item">
-        <span class="income-item-label">Emprego 1</span>
-        <span class="income-item-value">R$ 300,00</span>
-      </div>
-      <span class="tag">#salário</span>
-      <div class="income-item">
-        <span class="income-item-label">Emprego 2</span>
-        <span class="income-item-value">R$ 250,00</span>
-      </div>
-      <span class="tag">#salário</span>      
-    </div>
-
+    <table>
+      <thead>
+        <tr>
+          <th v-for="key in columns" :key="key">
+            {{ key }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="entry in data" :key="entry.id">
+          <td v-for="key in columns" :key="key">
+            {{ entry[key] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
+<script>
+export default {
+  data () {
+    return {
+      loading: false,
+      columns: ['id', 'description'],
+      data: [],
+    }
+  },
+  created () {
+    this.fetchIncomes()
+  },
+  methods: {
+    goToAddIncomeRoute () {
+      this.$router.push('incomes')
+    },
+    fetchIncomes () {
+      this.loading = true
+      this.$store.dispatch('fetchIncomes')
+        .then(result => {
+          console.log('result:', result)
+          this.data = result
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    }
+  }
+}
+</script>
+
 <style scoped>
 
-  .tag {
-    font-size: 12px;
-    color: #111;
-    font-style: italic;
+  table {
+    border-collapse: collapse;
+    width: 100%;
   }
 
-  .card {
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .panel-table {
     display: flex;
-    flex-direction: column;
-    padding: 20px 0 20px 0;    
-  }
-
-  .income-label {
-    color: #777;
-  }
-
-  .income-value {
-    font-size: 32px;
-    font-weight: 800;
-    color: #0000ff;
-    padding: 10px 0 0 0;
-  }
-
-  .income-item-header {
-    /* border-top: 1px solid #eee; */
-    border-bottom: 1px solid #eee;
-    padding: 20px 0 20px 0;
-    margin-bottom: 20px;
-  }
-
-  .income-item-title {
-    display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-
-  .income-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* border-top: 1px solid #eee; */
-    margin-top: 10px;
-    /* margin-bottom: 20px; */
-    cursor: pointer;
-  }
-
-  .income-item-title-label {
-    color: #444;
-    font-weight: 600;
-  }
-
-  .income-item-title-value {
-    color: #444;
-    font-weight: 600;
-  }  
-
-  .income-item-title-label {
-    color: #444;
-    font-weight: 600;
-  }
-
-  .income-item-title-value {
-    color: #444;
-    font-weight: 600;
-  }
-
-  .received {
-    color: #77cc77;
+    margin-bottom: 30px;
   }
 
 </style>
