@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     goToAddExpenseRoute () {
-      this.$router.push('expenses')
+      this.$router.push('create_expense')
     },
     fetchExpenses () {
       this.loading = true

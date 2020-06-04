@@ -24,6 +24,12 @@ export default new Router({
           props: true,
         },
         {
+          path: 'create_income',
+          name: 'CreateIncome',
+          component: () => import('../views/CreateIncome.vue'),
+          props: true,
+        },
+        {
           path: 'income_types',
           name: 'IncomeTypes',
           component: () => import('../views/IncomeTypes.vue'),
@@ -38,6 +44,12 @@ export default new Router({
           path: 'expenses',
           name: 'Expenses',
           component: () => import('../views/Expenses.vue'),
+          props: true,
+        },
+        {
+          path: 'create_expense',
+          name: 'CreateExpense',
+          component: () => import('../views/CreateExpense.vue'),
           props: true,
         },
         {

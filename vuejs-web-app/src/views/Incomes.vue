@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     goToAddIncomeRoute () {
-      this.$router.push('incomes')
+      this.$router.push('create_income')
     },
     fetchIncomes () {
       this.loading = true

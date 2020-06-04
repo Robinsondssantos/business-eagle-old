@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div class="panel-expense">
+    <div class="panel-income">
       <div class="form-group">
-        Expense
+        Income
       </div>
-      <form @submit.prevent="createExpense">
+      <form @submit.prevent="createIncome">
         <div 
           class="form-group"
         >
@@ -21,22 +21,22 @@
           class="form-group"
         >
           <input
-            v-model="provider"
-            class="form-control"
+            v-model="customer"
+            class="form-control" 
             type="text"
-            name="provider"
-            placeholder="Provider"
+            name="customer"
+            placeholder="Customer"
             required
           >
         </div>
-        <div 
+        <div
           class="form-group"
         >
-          <select 
+          <select
             v-model="selectedType"
             class="form-control"
           >
-            <option v-for="type in expenseTypes" :value="type.id" :key="type.id">
+            <option v-for="type in incomeTypes" value="type.id" :key="type.id">
               {{ type.description }}
             </option>
           </select>
@@ -77,7 +77,7 @@
             required
           >
         </div>
-        <div 
+        <div
           class="form-group"
         >
           <button
@@ -86,7 +86,7 @@
           >
             SAVE
           </button>
-        </div>                                                        
+        </div>
       </form>
     </div>
   </div>
@@ -94,34 +94,16 @@
 
 <script>
 
-  import { mapGetters } from 'vuex'
-
-      // Expenses:
-      // Provider
-      // description
-      // expense type
-
-      // partial expense:
-      // date to pay
-      // paid date
-      // value
-
-      // partial payment:
-      // date to pay
-      // paid date
-      // value
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
       loading: false,
       description: '',
-      provider: '',
+      customer: '',
       selectedType: '',
-      types: [
-        { text: 'Ford', value: 'ford' },
-        { text: 'Porsche', value: 'porsche' },
-      ],
+      types: [],
       dateToPay: '',
       value: '',
       status: '',
@@ -129,14 +111,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      expenseTypes: 'expenseTypes'
+      incomeTypes: 'incomeTypes'
     })
   },
   methods: {
-    createExpense () {
-      
+    createIncome () {
+
     }
   }
 }
 </script>
-
