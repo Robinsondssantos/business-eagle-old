@@ -6,12 +6,13 @@ import UserController from './app/controllers/UserController';
 // import ExpenseController from './app/controllers/ExpenseController';
 
 import ExpenseTypeController from './app/controllers/ExpenseTypeController';
+import ExpenseController from './app/controllers/ExpenseController';
+
 import IncomeTypeController from './app/controllers/IncomeTypeController';
+import IncomeController from './app/controllers/IncomeTypeController';
 
 import authMiddleware from './app/middlewares/auth';
 import customHeaders from './app/middlewares/customHeader';
-import IncomeType from './app/models/IncomeType';
-import ExpenseType from './app/models/ExpenseType';
 
 const routes = new Router();
 
@@ -29,5 +30,9 @@ routes.post('/expense_types', ExpenseTypeController.store);
 
 routes.get('/income_types', IncomeTypeController.index);
 routes.post('/income_types', IncomeTypeController.store);
+
+routes.get('/expenpes', ExpenseController.index);
+
+routes.get('/incomes', IncomeController.index);
 
 export default routes;
