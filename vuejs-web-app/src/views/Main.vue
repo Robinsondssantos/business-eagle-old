@@ -5,11 +5,20 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToAddProvidersAndCustomersRoute"
+            @click="goToAddProviderRoute"
           >
-            Add Provider/Customer
+            Provider
           </button>
-        </div>        
+        </div>
+
+        <div>
+          <button
+            class="btn btn-primary btn-main"
+            @click="goToAddCustomerRoute"
+          >
+            Customer
+          </button>
+        </div>                   
         <div>
           <button
             class="btn btn-primary btn-main"
@@ -67,9 +76,12 @@ export default {
     console.log('created - main')
   },
   methods: {
-    goToAddProvidersAndCustomersRoute () {
-      this.$router.push('providersAndCustomers')
-    },    
+    goToAddProviderRoute () {
+      this.$router.push('providers')
+    },
+    goToAddCustomerRoute () {
+      this.$router.push('customers')
+    },           
     goToAddExpenseRoute () {
       this.$router.push('expenses')
     },

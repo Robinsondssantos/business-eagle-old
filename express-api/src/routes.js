@@ -11,8 +11,12 @@ import ExpenseController from './app/controllers/ExpenseController';
 import IncomeTypeController from './app/controllers/IncomeTypeController';
 import IncomeController from './app/controllers/IncomeTypeController';
 
+import CustomerController from './app/controllers/CustomerController';
+import ProviderController from './app/controllers/ProviderController';
+
 import authMiddleware from './app/middlewares/auth';
 import customHeaders from './app/middlewares/customHeader';
+
 
 const routes = new Router();
 
@@ -34,5 +38,11 @@ routes.post('/income_types', IncomeTypeController.store);
 routes.get('/expenpes', ExpenseController.index);
 
 routes.get('/incomes', IncomeController.index);
+
+routes.get('/customers', CustomerController.index);
+routes.post('/customers', CustomerController.store);
+
+routes.get('/providers', ProviderController.index);
+routes.post('/providers', ProviderController.store);
 
 export default routes;

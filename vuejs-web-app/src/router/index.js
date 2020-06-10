@@ -70,10 +70,27 @@ export default new Router({
           component: () => import('../views/ExpensesSummary.vue')
         },
         {
-          path: 'providersAndCustomers',
-          name: 'ProvidersAndCustomers',
-          component: () => import('../views/ProvidersAndCustomers.vue')
+          path: 'providers',
+          name: 'Providers',
+          component: () => import('../views/Providers.vue')
+        },
+        {
+          path: 'create_provider',
+          name: 'CreateProvider',
+          component: () => import('../views/CreateProvider.vue'),
+          props: true,
         },        
+        {
+          path: 'customers',
+          name: 'Customers',
+          component: () => import('../views/Customers.vue')
+        },
+        {
+          path: 'create_customer',
+          name: 'CreateCustomer',
+          component: () => import('../views/CreateCustomer.vue'),
+          props: true,
+        },                  
         {
           path: 'about',
           name: 'About',

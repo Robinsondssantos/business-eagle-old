@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('expense_types', { 

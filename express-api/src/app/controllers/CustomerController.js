@@ -1,22 +1,22 @@
 import * as Yup from 'yup';
-import ExpenseType from '../models/ExpenseType';
+import Customer from '../models/Customer';
 
-class ExpenseTypeController {
+class CustomerController {
   async index(req, res) {
     try {
-      return res.json(await ExpenseType.findAll());
+      return res.json(await Customer.findAll());
     } catch(err) {
-      console.log(err);
+      console.log(err)
       return res.status(500)
-        .json({ errorCode: '006', errorMessage: 'Something wrong' });      
+        .json({ errorCode: '006', errorMessage: 'Something wrong' });
     }
   }
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      description: Yup.string()
+      name: Yup.string()
         .max(50)
-        .required('description is required'),
+        .required('name is required'),
     });
 
     try {
@@ -26,9 +26,13 @@ class ExpenseTypeController {
         .json({ errorCode: '003', errorMessage: err.message });
     }
 
+    const { name } = req.body;
+
     try {
-      const newExpenseType = await ExpenseType.create(req.body);
-      return res.json(newExpenseType);
+      const newCustomer = await Customer.create({
+        name,
+      });
+      return res.json(newCustomer);
     } catch(err) {
       console.log(err);
       return res.status(500)
@@ -37,5 +41,4 @@ class ExpenseTypeController {
   }
 }
 
-export default new ExpenseTypeController();
-
+export default new CustomerController();
