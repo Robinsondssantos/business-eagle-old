@@ -6,7 +6,7 @@ class Expense extends Model {
     super.init(
       {
         description: Sequelize.STRING,
-        data_to_pay: Sequelize.DATE,
+        date_to_pay: Sequelize.DATE,
         paid_in: Sequelize.DATE,
         value: Sequelize.DECIMAL(20, 2)
       },

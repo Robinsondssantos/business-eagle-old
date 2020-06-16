@@ -16,11 +16,9 @@ class ExpenseController {
     const schema = Yup.object().shape({
       // status
       value: Yup.number().required('value is required'),
-      paid_in: Yup.string()
-        .max(10)
+      paid_in: Yup.date()
         .required('paid_in is required'),
-      date_to_pay: Yup.string()
-        .max(10)
+      date_to_pay: Yup.date()
         .required('date_to_pay is required'),
       type_id: Yup.number().required('type_id is required'),
       provider_id: Yup.number().required('provider_id is required'),

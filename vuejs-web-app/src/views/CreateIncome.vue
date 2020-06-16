@@ -20,14 +20,17 @@
         <div 
           class="form-group"
         >
-          <input
-            v-model="customer"
-            class="form-control" 
-            type="text"
-            name="customer"
-            placeholder="Customer"
-            required
+          <select
+            v-model="selectedCustomer"
+            class="form-control"
           >
+            <option v-for="customer in customers"
+              :value="customer.id"
+              :key="customer.id"
+            >
+              {{ customer.name }}
+            </option>
+          </select>
         </div>
         <div
           class="form-group"
@@ -36,7 +39,10 @@
             v-model="selectedType"
             class="form-control"
           >
-            <option v-for="type in incomeTypes" value="type.id" :key="type.id">
+            <option v-for="type in incomeTypes" 
+              :value="type.id" 
+              :key="type.id"
+            >
               {{ type.description }}
             </option>
           </select>
@@ -45,14 +51,26 @@
           class="form-group"
         >
           <input
-            v-model="dateToPay"
+            v-model="dateToReceive"
             class="form-control"
             type="text"
-            name="dateToPay"
-            placeholder="Date to pay"
+            name="dateToReceive"
+            placeholder="Date to receive"
             required
           >
         </div>
+        <div 
+          class="form-group"
+        >
+          <input
+            v-model="receivedIn"
+            class="form-control"
+            type="text"
+            name="receivedIn"
+            placeholder="Received in"
+            required
+          >
+        </div>        
         <div 
           class="form-group"
         >
@@ -101,22 +119,56 @@ export default {
     return {
       loading: false,
       description: '',
-      customer: '',
-      selectedType: '',
-      types: [],
-      dateToPay: '',
+      selectedCustomer: null,
+      selectedType: null,
+      dateToReceive: '',
+      receivedIn: '',
       value: '',
       status: '',
     }
   },
   computed: {
     ...mapGetters({
+      customers: 'customers',
       incomeTypes: 'incomeTypes'
     })
   },
+  created () {
+    this.fetchCustomers()
+    this.fetchIncomeTypes()
+  },
   methods: {
+    fetchCustomers () {
+      this.loading = true
+      this.$store.dispatch('fetchCustomers')
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    },
+    fetchIncomeTypes () {
+      this.loading = true
+      this.$store.dispatch('fetchIncomeTypes')
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    },
     createIncome () {
-
+      this.loading = true
+      this.$store.dispatch('createIncome', {
+        description: this.description,
+        customer_id: this.selectedCustomer,
+        type_id: this.selectedType,
+        // date_to_receive: this.dateToReceive,
+        date_to_receive: new Date(),
+        // received_in: this.receivedIn,
+        received_in: new Date(),
+        value: this.value,
+        // status: this.status,
+      })
     }
   }
 }

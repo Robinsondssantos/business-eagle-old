@@ -25,7 +25,7 @@ module.exports = {
         onDelete: 'CASCADE',
         allowNull: false,
       },
-      data_to_pay: {
+      date_to_pay: {
         type: Sequelize.DATE,
         allowNull: false,
       },

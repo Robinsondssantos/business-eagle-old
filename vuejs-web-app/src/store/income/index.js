@@ -33,6 +33,19 @@ export default {
           })
           .finally(() => {})
       })
+    },
+    createIncome ({ commit }, income) {
+      return new Promise((resolve, reject) => {
+        api.post('incomes', income)
+          .then(result => {
+            commit('setIncome', result.data)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
     }
   }
 }

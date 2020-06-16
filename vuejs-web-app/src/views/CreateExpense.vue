@@ -24,7 +24,10 @@
             v-model="selectedProvider"
             class="form-control"
           >
-            <option v-for="provider in providers"  :value="provider.id" :key="provider.id">
+            <option v-for="provider in providers"  
+              :value="provider.id" 
+              :key="provider.id"
+            >
               {{ provider.name }}
             </option>
           </select>
@@ -36,7 +39,10 @@
             v-model="selectedType"
             class="form-control"
           >
-            <option v-for="type in expenseTypes" :value="type.id" :key="type.id">
+            <option v-for="type in expenseTypes" 
+              :value="type.id" 
+              :key="type.id"
+            >
               {{ type.description }}
             </option>
           </select>
@@ -142,17 +148,41 @@ export default {
       expenseTypes: 'expenseTypes'
     })
   },
+  created () {
+    this.fetchProviders()
+    this.fetchExpenseTypes()
+  },
   methods: {
+    fetchProviders () {
+      this.loading = true
+      this.$store.dispatch('fetchProviders')
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    },    
+    fetchExpenseTypes () {
+      this.loading = true
+      this.$store.dispatch('fetchExpenseTypes')
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    },        
     createExpense () {
       console.log('provider', this.selectedProvider)
       console.log('type', this.selectedType)      
       this.loading = true
       this.$store.dispatch('createExpense', {
         description: this.description,
-        provider_id: this.selectedProvider.id,
-        type_id: this.selectedType.id,
-        data_to_pay: this.dateToPay,
-        paid_in: this.paidIn,
+        provider_id: this.selectedProvider,
+        type_id: this.selectedType,
+        // date_to_pay: this.dateToPay,
+        date_to_pay: new Date(),
+        // paid_in: this.paidIn,
+        paid_in: new Date(),
         value: this.value,
         // status: this.status,
       })
