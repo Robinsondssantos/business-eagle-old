@@ -169,6 +169,9 @@ export default {
         value: this.value,
         // status: this.status,
       })
+        .then(() => {})
+        .catch(err => console.log(err))
+        .finally(() => { this.loading = false })
     }
   }
 }

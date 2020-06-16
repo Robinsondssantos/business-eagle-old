@@ -39,6 +39,7 @@ routes.get('/expenses', ExpenseController.index);
 routes.post('/expenses', ExpenseController.store);
 
 routes.get('/incomes', IncomeController.index);
+routes.post('/incomes', IncomeController.store);
 
 routes.get('/customers', CustomerController.index);
 routes.post('/customers', CustomerController.store);
