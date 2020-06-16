@@ -13,14 +13,14 @@ module.exports = {
       },
       provider_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'provider', key: 'id' },
+        references: { model: 'providers', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
       },
       type_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'exepense_type', key: 'id' },
+        references: { model: 'expense_types', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false,
       },
       value: {
-        type: Sequelize.CURRENCY,
+        type: Sequelize.DECIMAL(20, 2),
         allowNull: false,
       },
       created_at: {

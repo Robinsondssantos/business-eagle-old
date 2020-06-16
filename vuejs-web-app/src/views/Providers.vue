@@ -37,7 +37,7 @@ export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'description'],
+      columns: ['id', 'name'],
       data: [],
     }
   },

@@ -13,22 +13,26 @@ module.exports = {
       },
       customer_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'customer', key: 'id' },
+        references: { model: 'customers', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       type_id: {
         type: Sequelize.INTEGER,
-        references: { model:  'income_type', key: 'id' },
+        references: { model:  'income_types', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       date_to_receive: {
-        type: Sequelize.Date,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       received_in: {
-        type: Sequelize.Date,
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      value: {
+        type: Sequelize.DECIMAL(20, 2),
         allowNull: false,
       },
       created_at: {

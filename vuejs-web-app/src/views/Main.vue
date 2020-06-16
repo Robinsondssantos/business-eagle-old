@@ -24,7 +24,7 @@
             class="btn btn-primary btn-main"
             @click="goToAddExpenseRoute"
           >
-            Add Expense
+            Expense
           </button>
         </div>      
         <div>
@@ -32,7 +32,7 @@
             class="btn btn-primary btn-main"
             @click="goToAddIncomeRoute"
           >
-            Add Income
+            Income
           </button>
         </div>
         <div>

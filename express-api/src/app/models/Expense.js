@@ -1,11 +1,14 @@
-import { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
 
 class Expense extends Model {
   static init(sequelize) {
     super.init(
       {
-        description: sequelize.STRING,
+        description: Sequelize.STRING,
+        data_to_pay: Sequelize.DATE,
+        paid_in: Sequelize.DATE,
+        value: Sequelize.DECIMAL(20, 2)
       },
       {
         sequelize,
@@ -13,6 +16,17 @@ class Expense extends Model {
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Provider, { 
+      foreignKey: 'provider_id', 
+      as: 'provider' 
+    });
+    this.belongsTo(models.ExpenseType, { 
+      foreignKey: 'type_id', 
+      as: 'type' 
+    });
   }
 }
 

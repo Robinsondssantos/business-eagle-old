@@ -20,14 +20,14 @@
         <div 
           class="form-group"
         >
-          <input
-            v-model="provider"
+          <select
+            v-model="selectedProvider"
             class="form-control"
-            type="text"
-            name="provider"
-            placeholder="Provider"
-            required
           >
+            <option v-for="provider in providers"  :value="provider.id" :key="provider.id">
+              {{ provider.name }}
+            </option>
+          </select>
         </div>
         <div 
           class="form-group"
@@ -50,6 +50,18 @@
             type="text"
             name="dateToPay"
             placeholder="Date to pay"
+            required
+          >
+        </div>
+        <div
+          class="form-group"
+        >
+          <input
+            v-model="paidIn"
+            class="form-control"
+            type="text"
+            name="paidIn"
+            placeholder="Paid in"
             required
           >
         </div>
@@ -116,25 +128,37 @@ export default {
     return {
       loading: false,
       description: '',
-      provider: '',
-      selectedType: '',
-      types: [
-        { text: 'Ford', value: 'ford' },
-        { text: 'Porsche', value: 'porsche' },
-      ],
+      selectedProvider: null,
+      selectedType: null,
       dateToPay: '',
+      paidIn: '',
       value: '',
       status: '',
     }
   },
   computed: {
     ...mapGetters({
+      providers: 'providers',
       expenseTypes: 'expenseTypes'
     })
   },
   methods: {
     createExpense () {
-      
+      console.log('provider', this.selectedProvider)
+      console.log('type', this.selectedType)      
+      this.loading = true
+      this.$store.dispatch('createExpense', {
+        description: this.description,
+        provider_id: this.selectedProvider.id,
+        type_id: this.selectedType.id,
+        data_to_pay: this.dateToPay,
+        paid_in: this.paidIn,
+        value: this.value,
+        // status: this.status,
+      })
+        .then(() => {})
+        .catch(err => console.log(err))
+        .finally(() => { this.loading = false })
     }
   }
 }

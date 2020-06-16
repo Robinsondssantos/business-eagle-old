@@ -32,7 +32,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     session ({ commit }, credential) {
       return new Promise((resolve, reject) => {
-        api.post('session', {
+        api.post('sessions', {
           email: credential.email,
           password: credential.password
         })

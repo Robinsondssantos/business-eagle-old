@@ -7,6 +7,7 @@ class Income extends Model {
         description: Sequelize.STRING,
         date_to_receive: Sequelize.DATE,
         received_in: Sequelize.DATE,
+        value: Sequelize.DECIMAL(20, 2)
       },
       {
         sequelize,
@@ -21,7 +22,7 @@ class Income extends Model {
       foreignKey: 'customer_id',
       as: 'customer',
     });
-    this.belongsTo(models.Type, {
+    this.belongsTo(models.IncomeType, {
       foreignKey: 'type_id',
       as: 'type',
     });

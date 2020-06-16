@@ -22,7 +22,7 @@ const routes = new Router();
 
 routes.use(customHeaders);
 
-routes.post('/session', SessionController.store);
+routes.post('/sessions', SessionController.store);
 routes.post('/users', UserController.store);
 
 routes.use(authMiddleware);
@@ -35,7 +35,8 @@ routes.post('/expense_types', ExpenseTypeController.store);
 routes.get('/income_types', IncomeTypeController.index);
 routes.post('/income_types', IncomeTypeController.store);
 
-routes.get('/expenpes', ExpenseController.index);
+routes.get('/expenses', ExpenseController.index);
+routes.post('/expenses', ExpenseController.store);
 
 routes.get('/incomes', IncomeController.index);
 
