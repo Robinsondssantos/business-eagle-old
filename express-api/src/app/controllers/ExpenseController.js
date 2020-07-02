@@ -59,6 +59,20 @@ class ExpenseController {
         .json({ errorCode: '006', errorMessage: 'Something wrong' });
     }
   }
+
+  async delete(req, res) {
+    try {
+      return res.json(await Expense.destroy({
+        where: {
+          id: req.params.expenseId
+        }
+      }));
+    } catch(err) {
+      console.log(err)
+      return res.status(400)
+      .json({ errorCode: '003', errorMessage: err.message });   
+    }
+  }  
 }
 
 export default new ExpenseController();

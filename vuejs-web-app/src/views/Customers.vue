@@ -7,7 +7,7 @@
       <div>
         <button
           class="btn btn-secondary"
-          @click="goToAddCustomerRoute"
+          @click="goToCreateCustomer"
         >
           Add Customer
         </button>
@@ -19,12 +19,22 @@
           <th v-for="key in columns" :key="key">
             {{ key }}
           </th>
+          <th>            
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="entry in data" :key="entry.id">
+        <tr v-for="customer in customers" :key="customer.id">
           <td v-for="key in columns" :key="key">
-            {{ entry[key] }}
+            {{ customer[key] }}
+          </td>
+          <td>
+            <button
+              class="btn"
+              @click="deleteCustomer(customer.id)"
+            >
+              REMOVE
+            </button>
           </td>
         </tr>
       </tbody>
@@ -33,19 +43,26 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
       loading: false,
       columns: ['id', 'name'],
-      data: [],
     }
   },
+  computed: {
+    ...mapGetters({
+      customers: 'customers'
+    })
+  },  
   created () {
     this.fetchCustomers()
   },
   methods: {
-    goToAddCustomerRoute () {
+    goToCreateCustomer () {
       this.$router.push('create_customer')
     },
     fetchCustomers () {
@@ -57,7 +74,16 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    }
+    },
+    deleteCustomer (customerId) {
+      this.loading = true
+      this.$store.dispatch('deleteCustomer', customerId)
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    }    
   }
 }
 </script>

@@ -24,7 +24,8 @@
 
   body {    
     /* background: #ebf5ff; */
-    background: #004cb2;    
+    /* background: #004cb2;     */
+    background: #fefeff;    
     -webkit-font-smoothing: antialiased !important;
   }
 

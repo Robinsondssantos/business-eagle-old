@@ -16,6 +16,16 @@ export default {
     setCustomer (state, customer) {
       state.customers = [...state.customers, customer]
     },
+    updateCustomer (state, updatedCustomer) {
+      state.customers = state.customers.map(
+        customer => customer.id === updatedCustomer.id ? updatedCustomer : customer
+      )
+    },
+    deleteCustomer (state, customerId) {
+      state.customers = state.customers.filter(
+        customer => customer.id !== customerId
+      )
+    },    
     clearCustomers (state) {
       state.customers = []
     }
@@ -46,6 +56,19 @@ export default {
           })
           .finally(() => {})
       })
-    }
+    },
+    deleteCustomer ({ commit }, customerId) {
+      return new Promise((resolve, reject) => {
+        api.delete(`customers/${customerId}`)
+          .then(result => {
+            commit('deleteCustomer', customerId)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
+    }    
   }
 }

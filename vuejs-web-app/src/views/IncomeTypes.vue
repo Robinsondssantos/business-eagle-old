@@ -1,34 +1,34 @@
 <template>
   <div class="container">
-    <div class="panel-dashboard">
-      <div class="form-group">
-        Income Type
-      </div>          
-      <form @submit.prevent="createIncomeType">    
-        <div class="form-group">
-          <input 
-            v-model="description"
-            class="form-control" 
-            type="text" 
-            name="description" 
-            placeholder="Description"
-            required
-          >
-        </div>
-        <div class="form-group">
-          <button 
-            class="btn btn-secondary btn-icon" 
-            type="submit" 
-            style="margin-top: 22px; color: #ccc;"
-          >
-            <div v-if="loading" class="spinner"></div>
-            <div v-else>
-              SAVE
-            </div>
-          </button>
-        </div>
-      </form>
+    <div class="panel-table">
+      <div>
+        Income Types
+      </div>
+      <div>
+        <button
+          class="btn btn-secondary"
+          @click="goToCreateIncomeType"
+        >
+          Add Income Type
+        </button>
+      </div>
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th v-for="key in columns" :key="key">
+            {{ key }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="entry in data" :key="entry.id">
+          <td v-for="key in columns" :key="key">
+            {{ entry[key] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -37,18 +37,26 @@ export default {
   data () {
     return {
       loading: false,
-      description: ''
+      columns: ['id', 'description'],
+      data: [],
     }
   },
+  created () {
+    this.fetchIncomeTypes()
+  },
   methods: {
-    createIncomeType () {
+    goToCreateIncomeType () {
+      this.$router.push('create_income_type')
+    },
+    fetchIncomeTypes () {
       this.loading = true
-      this.$store.dispatch('createIncomeType', {
-        description: this.description
-      })
-        .then(() => {})
+      this.$store.dispatch('fetchIncomeTypes')
+        .then(result => {
+          console.log('result:', result)
+          this.data = result
+        })
         .catch(err => console.log(err))
-        .finally(() => { this.loading = false })
+        .finally(() => this.loading = false)
     }
   }
 }
@@ -56,4 +64,20 @@ export default {
 
 <style scoped>
 
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+ .panel-table {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin-bottom: 30px;
+ }
 </style>

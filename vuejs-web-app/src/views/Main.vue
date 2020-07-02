@@ -5,7 +5,7 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToAddProviderRoute"
+            @click="goToProviders"
           >
             Provider
           </button>
@@ -14,7 +14,7 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToAddCustomerRoute"
+            @click="goToCustomers"
           >
             Customer
           </button>
@@ -22,7 +22,7 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToAddExpenseRoute"
+            @click="goToExpenses"
           >
             Expense
           </button>
@@ -30,7 +30,7 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToAddIncomeRoute"
+            @click="goToIncomes"
           >
             Income
           </button>
@@ -38,7 +38,7 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToExpenseTypeTableRoute"
+            @click="goToExpenseTypes"
           >
             Expense Types
           </button>
@@ -46,7 +46,7 @@
         <div>
           <button
             class="btn btn-primary btn-main"
-            @click="goToIncomeTypeTableRoute"
+            @click="goToIncomeTypes"
           >
             Income Types
           </button>
@@ -76,23 +76,23 @@ export default {
     console.log('created - main')
   },
   methods: {
-    goToAddProviderRoute () {
+    goToProviders () {
       this.$router.push('providers')
     },
-    goToAddCustomerRoute () {
+    goToCustomers () {
       this.$router.push('customers')
     },           
-    goToAddExpenseRoute () {
+    goToExpenses () {
       this.$router.push('expenses')
     },
-    goToAddIncomeRoute () {
+    goToIncomes () {
       this.$router.push('incomes')
     },
-    goToExpenseTypeTableRoute () {
-      this.$router.push('expense_type_table')
+    goToExpenseTypes () {
+      this.$router.push('expense_types')
     },
-    goToIncomeTypeTableRoute () {
-      this.$router.push('income_type_table')
+    goToIncomeTypes () {
+      this.$router.push('income_types')
     },     
     logOff () {
       this.$store.dispatch('logOff')
@@ -122,7 +122,7 @@ export default {
 
   .btn-main-secondary {
     color: rgba(255, 255, 255, 0.90);
-    background: #0056ce;;
+    background: #0056ce;
   }
 
 </style>

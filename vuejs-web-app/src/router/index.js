@@ -36,9 +36,9 @@ export default new Router({
           props: true,
         },
         {
-          path: 'income_type_table',
-          name: 'IncomeTypeTable',
-          component: () => import('../views/IncomeTypeTable.vue'),
+          path: 'create_income_type',
+          name: 'CreateIncomeType',
+          component: () => import('../views/CreateIncomeType.vue'),
         },        
         {
           path: 'expenses',
@@ -59,9 +59,9 @@ export default new Router({
           props: true,
         },
         {
-          path: 'expense_type_table',
-          name: 'ExpenseTypeTable',
-          component: () => import('../views/ExpenseTypeTable.vue'),
+          path: 'create_expense_type',
+          name: 'CreateExpenseType',
+          component: () => import('../views/CreateExpenseType.vue'),
           props: true,
         },        
         {

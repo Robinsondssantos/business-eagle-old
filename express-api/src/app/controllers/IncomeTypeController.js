@@ -35,6 +35,20 @@ class IncomeTypeController {
         .json({ errorCode: '006', errorMessage: 'Something wrong' });
     }
   }
+
+  async delete(req, res) {
+    try {
+      return res.json(await IncomeType.destroy({
+        where: {
+          id: req.params.incomeTypeId
+        }
+      }));
+    } catch(err) {
+      console.log(err)
+      return res.status(400)
+      .json({ errorCode: '003', errorMessage: err.message });   
+    }
+  }   
 }
 
 export default new IncomeTypeController();

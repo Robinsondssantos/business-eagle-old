@@ -31,20 +31,26 @@ routes.use(authMiddleware);
 
 routes.get('/expense_types', ExpenseTypeController.index);
 routes.post('/expense_types', ExpenseTypeController.store);
+routes.post('/expense_types/:expenseTypeId', ExpenseTypeController.delete);
 
 routes.get('/income_types', IncomeTypeController.index);
 routes.post('/income_types', IncomeTypeController.store);
+routes.delete('/income_types/:incomeTypeId', IncomeTypeController.delete);
 
 routes.get('/expenses', ExpenseController.index);
 routes.post('/expenses', ExpenseController.store);
+routes.delete('/expenses/:expenseId', ExpenseController.delete);
 
 routes.get('/incomes', IncomeController.index);
 routes.post('/incomes', IncomeController.store);
+routes.delete('/incomes/:incomeId', IncomeController.delete);
 
 routes.get('/customers', CustomerController.index);
 routes.post('/customers', CustomerController.store);
+routes.delete('/customers/:customerId', CustomerController.delete);
 
 routes.get('/providers', ProviderController.index);
 routes.post('/providers', ProviderController.store);
+routes.delete('/providers/:providerId', ProviderController.delete);
 
 export default routes;

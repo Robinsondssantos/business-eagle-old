@@ -19,12 +19,22 @@
           <th v-for="key in columns" :key="key">
             {{ key }}
           </th>
+          <th>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="entry in data" :key="entry.id">
+        <tr v-for="provider in providers" :key="provider.id">
           <td v-for="key in columns" :key="key">
-            {{ entry[key] }}
+            {{ provider[key] }}
+          </td>
+          <td>
+            <button
+              class="btn"
+              @click="deleteProvider(provider.id)"
+            >
+              REMOVE
+            </button>
           </td>
         </tr>
       </tbody>
@@ -33,13 +43,20 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'name'],
-      data: [],
+      columns: ['id', 'name']
     }
+  },
+  computed: {
+    ...mapGetters({
+      providers: 'providers'
+    })
   },
   created () {
     this.fetchProviders()
@@ -54,6 +71,15 @@ export default {
         .then(result => {
           console.log('result:', result)
           this.data = result
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    },
+    deleteProvider (providerId) {
+      this.loading = true
+      this.$store.dispatch('deleteProvider', providerId)
+        .then(result => {
+          console.log('result:', result)
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)

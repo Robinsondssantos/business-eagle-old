@@ -24,7 +24,10 @@
             class="btn btn-secondary"
             type="submit"
           >
-            SAVE
+            <div v-if="loading" class="spinner"></div>
+            <div v-else>
+              SAVE
+            </div>
           </button>
         </div>                                                        
       </form>

@@ -7,7 +7,7 @@
       <div>
         <button
           class="btn btn-secondary"
-          @click="goToAddIncomeRoute"
+          @click="goToCreateIncome"
         >
           Add Income
         </button>
@@ -19,13 +19,23 @@
           <th v-for="key in columns" :key="key">
             {{ key }}
           </th>
+          <th>
+          </th>          
         </tr>
       </thead>
       <tbody>
-        <tr v-for="entry in data" :key="entry.id">
+        <tr v-for="income in incomes" :key="income.id">
           <td v-for="key in columns" :key="key">
-            {{ entry[key] }}
+            {{ income[key] }}
           </td>
+          <td>
+            <button
+              class="btn"
+              @click="deleteIncome(income.id)"
+            >
+              REMOVE
+            </button>
+          </td>          
         </tr>
       </tbody>
     </table>
@@ -33,19 +43,26 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'description'],
-      data: [],
+      columns: ['id', 'description']
     }
   },
+  computed: {
+    ...mapGetters({
+      incomes: 'incomes'
+    })
+  },  
   created () {
     this.fetchIncomes()
   },
   methods: {
-    goToAddIncomeRoute () {
+    goToCreateIncome () {
       this.$router.push('create_income')
     },
     fetchIncomes () {
@@ -57,7 +74,16 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    }
+    },
+    deleteIncome (incomeId) {
+      this.loading = true
+      this.$store.dispatch('deleteIncome', incomeId)
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    }    
   }
 }
 </script>
