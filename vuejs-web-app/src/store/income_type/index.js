@@ -16,6 +16,17 @@ export default {
     setIncomeType (state, incomeType) {
       state.incomeTypes = [...state.incomeTypes, incomeType]
     },
+    updateIncomeType (state, updatedIncomeType) {
+      state.incomeTypes = state.incomeTypes.map(
+        incomeType => incomeType.id === updatedIncomeType.id 
+          ? updatedIncomeType : incomeType
+      )
+    },
+    deleteIncomeType (state, incomeTypeId) {
+      state.incomeTypes = state.incomeTypes.filter(
+        incomeType => incomeType.id !== incomeTypeId
+      )
+    },
     clearIncomeTypes (state) {
       state.incomeTypes = []
     }
@@ -39,6 +50,19 @@ export default {
         api.post('income_types', incomeType)
           .then(result => {
             commit('setIncomeType', result.data)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
+    },
+    deleteIncomeType ({ commit }, incomeTypeId) {
+      return new Promise((resolve, reject) => {
+        api.delete(`income_types/${incomeTypeId}`)
+          .then(result => {
+            commit('deleteIncomeType', incomeTypeId)
             resolve(result.data)
           })
           .catch(err => {

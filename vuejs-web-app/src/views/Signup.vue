@@ -1,6 +1,7 @@
 <template>
   <div class="container-signin">
     <div class="panel-signin">
+      <span>{{ error }}</span>
       <form @submit.prevent=createUser>
         <div class="form-group">
           <input 
@@ -67,6 +68,7 @@
 export default {
   data () {
     return {
+      error: '',
       first_name: '',
       last_name: '',
       phone: '',
@@ -89,7 +91,7 @@ export default {
           console.log('result:', result)
         })
         .catch(err => {
-          console.log('err:', err)
+          this.error = err
         })
         .finally(() => {})
     }

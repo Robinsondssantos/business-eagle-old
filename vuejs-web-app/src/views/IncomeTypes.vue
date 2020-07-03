@@ -19,12 +19,22 @@
           <th v-for="key in columns" :key="key">
             {{ key }}
           </th>
+          <th>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="entry in data" :key="entry.id">
+        <tr v-for="incomeType in incomeTypes" :key="incomeType.id">
           <td v-for="key in columns" :key="key">
-            {{ entry[key] }}
+            {{ incomeType[key] }}
+          </td>
+          <td>
+            <button
+              class="btn"
+              @click="deleteIncomeType(incomeType.id)"
+            >
+              REMOVE
+            </button>
           </td>
         </tr>
       </tbody>
@@ -33,16 +43,23 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'description'],
-      data: [],
+      columns: ['id', 'description']
     }
   },
   created () {
     this.fetchIncomeTypes()
+  },
+  computed: {
+    ...mapGetters({
+      incomeTypes: 'incomeTypes'
+    })
   },
   methods: {
     goToCreateIncomeType () {
@@ -54,6 +71,15 @@ export default {
         .then(result => {
           console.log('result:', result)
           this.data = result
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    },
+    deleteIncomeType (incomeTypeId) {
+      this.loading = true
+      this.$store.dispatch('deleteIncomeType', incomeTypeId)
+        .then(result => {
+          console.log('result:', result)
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)

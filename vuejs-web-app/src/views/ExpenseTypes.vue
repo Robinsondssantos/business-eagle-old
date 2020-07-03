@@ -19,13 +19,23 @@
           <th v-for="key in columns" :key="key">
             {{ key }}
           </th>
+          <th>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="entry in data" :key="entry.id">
+        <tr v-for="expenseType in expenseTypes" :key="expenseType.id">
           <td v-for="key in columns" :key="key">
-            {{ entry[key] }}
+            {{ expenseType[key] }}
           </td>
+          <td>
+            <button
+              class="btn"
+              @click="deleteExpenseType(expenseType.id)"
+            >
+              REMOVE
+            </button>
+          </td>          
         </tr>
       </tbody>
     </table>
@@ -33,14 +43,21 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'description'],
-      data: [],
+      columns: ['id', 'description']
     }
   },
+  computed: {
+    ...mapGetters({
+      expenseTypes: 'expenseTypes'
+    })
+  },  
   created () {
     this.fetchExpenseTypes()
   },
@@ -57,7 +74,16 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    }
+    },
+    deleteExpenseType (expenseTypeId) {
+      this.loading = true
+      this.$store.dispatch('deleteExpenseType', expenseTypeId)
+        .then(result => {
+          console.log('result:', result)
+        })
+        .catch(err => console.log(err))
+        .finally(() => this.loading = false)
+    }  
   }
 }
 </script>

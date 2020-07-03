@@ -1,0 +1,1 @@
+NODE_ENV=development yarn sequelize db:seed:all

@@ -31,7 +31,7 @@ routes.use(authMiddleware);
 
 routes.get('/expense_types', ExpenseTypeController.index);
 routes.post('/expense_types', ExpenseTypeController.store);
-routes.post('/expense_types/:expenseTypeId', ExpenseTypeController.delete);
+routes.delete('/expense_types/:expenseTypeId', ExpenseTypeController.delete);
 
 routes.get('/income_types', IncomeTypeController.index);
 routes.post('/income_types', IncomeTypeController.store);
