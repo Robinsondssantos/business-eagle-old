@@ -40,6 +40,50 @@ class ProviderController {
     }
   }
 
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string()
+        .max(50)
+        .required('name is required'),
+    });
+
+    try {
+      await schema.validate(req.body);
+    } catch(err) {
+      return res.status(400)
+        .json({ errorCode: '003', errorMessage: err.message });
+    }
+
+    let provider = null;
+
+    try {
+      provider = await Provider.findOne({
+        where: {
+          id: req.params.providerId,
+        }
+      })
+    } catch(err) {
+      console.log(err);
+      return res.status(500).json({ errorCode: '003', errorMessage: err.message });
+    }
+
+    const { name } = req.body;    
+
+    let updatedProvider = null;
+
+    try {
+      updatedProvider = await provider.update({
+        name,
+      })
+    } catch(err) {
+      console.log(err)
+      return res.status(500)
+        .json({ errorCode: '006', errorMessage: 'Something wrong' });
+    }
+
+    return res.json(updatedProvider);
+  }
+
   async delete(req, res) {
     try {
       return res.json(await Provider.destroy({

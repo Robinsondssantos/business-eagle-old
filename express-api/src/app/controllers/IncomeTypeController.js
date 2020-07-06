@@ -36,6 +36,52 @@ class IncomeTypeController {
     }
   }
 
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      description: Yup.string()
+        .max(50)
+        .required('description is required'),
+    });
+
+    try {
+      await schema.validate(req.body);
+    } catch(err) {
+      return res.status(400)
+        .json({ errorCode: '003', errorMessage: err.message });
+    }
+    
+    let incomeType = null;
+
+    try {
+      incomeType = await IncomeType.findOne({
+        where: {
+          id: req.params.incomeTypeId,
+        }
+      })
+    } catch(err) {
+      console.log(err);
+      return res.status(500).json({ errorCode: '003', errorMessage: err.message });      
+    }
+    
+    const {
+      description,
+    } = req.body;
+
+    let updatedIncomeType = null;
+
+    try {
+      updatedIncomeType = await incomeType.update({
+        description,
+      });
+    } catch(err) {
+      console.log(err);
+      return res.status(500)
+        .json({ errorCode: '006', errorMessage: 'Something wrong' });                  
+    }
+
+    return res.json(updatedIncomeType);
+  }
+
   async delete(req, res) {
     try {
       return res.json(await IncomeType.destroy({

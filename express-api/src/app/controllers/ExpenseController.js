@@ -60,6 +60,70 @@ class ExpenseController {
     }
   }
 
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      // status
+      value: Yup.number().required('value is required'),
+      paid_in: Yup.date()
+        .required('paid_in is required'),
+      date_to_pay: Yup.date()
+        .required('date_to_pay is required'),
+      type_id: Yup.number().required('type_id is required'),
+      provider_id: Yup.number().required('provider_id is required'),
+      description: Yup.string()
+        .max(50)
+        .required('description is required'),
+    });
+    
+    try {
+      await schema.validate(req.body);
+    } catch(err) {
+      return res.status(400)
+        .json({ errorCode: '003', errorMessage: err.message });
+    }
+    
+    let expense = null;
+
+    try {
+      expense = await Expense.findOne({
+        where: {
+          id: req.params.expenseId,
+        }
+      })
+    } catch(err) {
+      console.log(err);
+      return res.status(500).json({ errorCode: '003', errorMessage: err.message });
+    }
+
+    const { 
+      description, 
+      provider_id, 
+      type_id, 
+      date_to_pay,
+      paid_in,
+      value 
+    } = req.body;
+
+    let updatedExpense = null;
+
+    try {
+      updatedExpense = await expense.update({
+        description,
+        provider_id,
+        type_id,
+        date_to_pay,
+        paid_in,
+        value,
+      })
+    } catch(err) {
+      console.log(err)
+      return res.status(500)
+        .json({ errorCode: '006', errorMessage: 'Something wrong' });      
+    }
+
+    return res.json(updatedExpense);
+  }
+
   async delete(req, res) {
     try {
       return res.json(await Expense.destroy({
