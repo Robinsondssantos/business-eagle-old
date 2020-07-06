@@ -21,6 +21,8 @@
           </th>
           <th>            
           </th>
+          <th>            
+          </th>          
         </tr>
       </thead>
       <tbody>
@@ -28,6 +30,14 @@
           <td v-for="key in columns" :key="key">
             {{ customer[key] }}
           </td>
+          <td>
+            <button
+              class="btn"
+              @click="goToEditCustomerRoute(customer.id)"
+            >
+              EDIT
+            </button>
+          </td>          
           <td>
             <button
               class="btn"
@@ -64,6 +74,9 @@ export default {
   methods: {
     goToCreateCustomer () {
       this.$router.push('create_customer')
+    },
+    goToEditCustomerRoute (customerId) {
+      this.$router.push(`customers/${customerId}`)
     },
     fetchCustomers () {
       this.loading = true

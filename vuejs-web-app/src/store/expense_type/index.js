@@ -7,7 +7,12 @@ export default {
   getters: {
     expenseTypes (state) {
       return state.expenseTypes
-    }
+    },
+    expenseType (state) {
+      return expenseTypeId => state.expenseTypes.filter(
+        expenseType => expenseType.id === expenseTypeId
+      )
+    }     
   },
   mutations: {
     setExpenseTypes (state, expenseTypes) {
@@ -58,6 +63,19 @@ export default {
           .finally(() => {})
       })
     },
+    updateExpenseType ({ commit }, updatedExpenseType) {
+      return new Promise((resolve, reject) => {
+        api.put(`expense_types/${updatedExpenseType.id}`, updatedExpenseType)
+          .then(result => {
+            commit('updateExpenseType', result.data)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
+    },       
     deleteExpenseType ({ commit }, expenseTypeId) {
       return new Promise((resolve, reject) => {
         api.delete(`expense_types/${expenseTypeId}`)

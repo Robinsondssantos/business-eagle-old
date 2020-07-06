@@ -7,7 +7,12 @@ export default {
   getters: {
     customers (state) {
       return state.customers
-    }
+    },
+    customer (state) {
+      return customerId => state.customers.filter(
+        customer => customer.id === customerId
+      )
+    }    
   },
   mutations: {
     setCustomers (state, customers) {
@@ -57,6 +62,19 @@ export default {
           .finally(() => {})
       })
     },
+    updateCustomer ({ commit }, updatedCustomer) {
+      return new Promise((resolve, reject) => {
+        api.put(`customers/${updatedCustomer.id}`, updatedCustomer)
+          .then(result => {
+            commit('updateCustomer', result.data)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
+    },    
     deleteCustomer ({ commit }, customerId) {
       return new Promise((resolve, reject) => {
         api.delete(`customers/${customerId}`)

@@ -21,6 +21,8 @@
           </th>
           <th>
           </th>
+          <th>
+          </th>          
         </tr>
       </thead>
       <tbody>
@@ -29,6 +31,15 @@
             {{ expenseType[key] }}
           </td>
           <td>
+          <td>
+            <button
+              class="btn"
+              @click="goToEditExpenseTypeRoute(expenseType.id)"
+            >
+              EDIT
+            </button>
+          </td> 
+          <td>            
             <button
               class="btn"
               @click="deleteExpenseType(expenseType.id)"
@@ -65,6 +76,9 @@ export default {
     goToCreateExpenseType () {
       this.$router.push('create_expense_type')
     },
+    goToEditExpenseTypeRoute (expenseTypeId) {
+      this.$router.push(`expense_types/${expenseTypeId}`)
+    },    
     fetchExpenseTypes () {
       this.loading = true
       this.$store.dispatch('fetchExpenseTypes')

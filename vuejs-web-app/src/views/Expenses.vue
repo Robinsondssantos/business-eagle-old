@@ -20,7 +20,9 @@
             {{ key }}
           </th>
           <th>
-          </th>          
+          </th>
+          <th>            
+          </th>                    
         </tr>
       </thead>
       <tbody>
@@ -28,6 +30,14 @@
           <td v-for="key in columns" :key="key">
             {{ expense[key] }}
           </td>
+          <td>
+            <button
+              class="btn"
+              @click="goToEditExpenseRoute(expense.id)"
+            >
+              EDIT
+            </button>
+          </td>          
           <td>
             <button
               class="btn"
@@ -65,6 +75,9 @@ export default {
     goToCreateExpense () {
       this.$router.push('create_expense')
     },
+    goToEditExpenseRoute (expenseId) {
+      this.$router.push(`expenses/${expenseId}`)
+    },    
     fetchExpenses () {
       this.loading = true
       this.$store.dispatch('fetchExpenses')

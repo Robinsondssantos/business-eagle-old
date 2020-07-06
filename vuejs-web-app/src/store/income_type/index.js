@@ -7,7 +7,12 @@ export default {
   getters: {
     incomeTypes (state) {
       return state.incomeTypes
-    }
+    },
+    incomeType (state) {
+      return incomeTypeId => state.incomeTypes.filter(
+        incomeType => incomeType.id === incomeTypeId
+      )
+    }    
   },
   mutations: {
     setIncomeTypes (state, incomeTypes) {
@@ -58,6 +63,19 @@ export default {
           .finally(() => {})
       })
     },
+    updateIncomeType ({ commit }, updatedIncomeType) {
+      return new Promise((resolve, reject) => {
+        api.put(`income_types/${updatedIncomeType.id}`, updatedIncomeType)
+          .then(result => {
+            commit('updateIncomeType', result.data)
+            resolve(result.data)
+          })
+          .catch(err => {
+            reject(err)
+          })
+          .finally(() => {})
+      })
+    },    
     deleteIncomeType ({ commit }, incomeTypeId) {
       return new Promise((resolve, reject) => {
         api.delete(`income_types/${incomeTypeId}`)

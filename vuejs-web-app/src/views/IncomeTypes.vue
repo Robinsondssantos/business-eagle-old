@@ -21,6 +21,8 @@
           </th>
           <th>
           </th>
+          <th>
+          </th>          
         </tr>
       </thead>
       <tbody>
@@ -28,6 +30,14 @@
           <td v-for="key in columns" :key="key">
             {{ incomeType[key] }}
           </td>
+          <td>
+            <button
+              class="btn"
+              @click="goToEditIncomeTypeRoute(incomeType.id)"
+            >
+              EDIT
+            </button>
+          </td>          
           <td>
             <button
               class="btn"
@@ -65,6 +75,9 @@ export default {
     goToCreateIncomeType () {
       this.$router.push('create_income_type')
     },
+    goToEditIncomeTypeRoute (incomeTypeId) {
+      this.$router.push(`income_types/${incomeTypeId}`)
+    },    
     fetchIncomeTypes () {
       this.loading = true
       this.$store.dispatch('fetchIncomeTypes')

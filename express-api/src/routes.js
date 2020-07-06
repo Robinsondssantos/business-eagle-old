@@ -31,17 +31,17 @@ routes.use(authMiddleware);
 
 routes.get('/expense_types', ExpenseTypeController.index);
 routes.post('/expense_types', ExpenseTypeController.store);
-routes.update('/expense_types/:expenseTypeId', ExpenseTypeController.update);
+routes.put('/expense_types/:expenseTypeId', ExpenseTypeController.update);
 routes.delete('/expense_types/:expenseTypeId', ExpenseTypeController.delete);
 
 routes.get('/income_types', IncomeTypeController.index);
 routes.post('/income_types', IncomeTypeController.store);
-routes.update('/income_types/:incomeTypeId', IncomeTypeController.update);
+routes.put('/income_types/:incomeTypeId', IncomeTypeController.update);
 routes.delete('/income_types/:incomeTypeId', IncomeTypeController.delete);
 
 routes.get('/expenses', ExpenseController.index);
 routes.post('/expenses', ExpenseController.store);
-routes.update('/expenses/:expenseId', ExpenseController.update);
+routes.put('/expenses/:expenseId', ExpenseController.update);
 routes.delete('/expenses/:expenseId', ExpenseController.delete);
 
 routes.get('/incomes', IncomeController.index);

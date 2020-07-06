@@ -30,6 +30,12 @@ export default new Router({
           props: true,
         },
         {
+          path: 'incomes/:id',
+          name: 'EditIncome',
+          component: () => import('../views/EditIncome.vue'),
+          props: true,
+        },                
+        {
           path: 'income_types',
           name: 'IncomeTypes',
           component: () => import('../views/IncomeTypes.vue'),
@@ -39,7 +45,13 @@ export default new Router({
           path: 'create_income_type',
           name: 'CreateIncomeType',
           component: () => import('../views/CreateIncomeType.vue'),
-        },        
+        },
+        {
+          path: 'income_types/:id',
+          name: 'EditIncomeType',
+          component: () => import('../views/EditIncomeType.vue'),
+          props: true,
+        },                 
         {
           path: 'expenses',
           name: 'Expenses',
@@ -52,6 +64,12 @@ export default new Router({
           component: () => import('../views/CreateExpense.vue'),
           props: true,
         },
+        {
+          path: 'expenses/:id',
+          name: 'EditExpense',
+          component: () => import('../views/EditExpense.vue'),
+          props: true,
+        },        
         {
           path: 'expense_types',
           name: 'ExpenseTypes',
@@ -96,7 +114,13 @@ export default new Router({
           name: 'CreateCustomer',
           component: () => import('../views/CreateCustomer.vue'),
           props: true,
-        },                  
+        },
+        {
+          path: 'customers/:id',
+          name: 'EditCustomer',
+          component: () => import('../views/EditCustomer.vue'),
+          props: true,
+        },                          
         {
           path: 'about',
           name: 'About',
