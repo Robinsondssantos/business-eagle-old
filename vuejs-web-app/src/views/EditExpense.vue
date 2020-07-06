@@ -187,6 +187,7 @@ export default {
       console.log('type', this.selectedType)      
       this.loading = true
       this.$store.dispatch('updateExpense', {
+        id: this.expense.id,
         description: this.expense.description,
         provider_id: this.expense.selectedProvider,
         type_id: this.expense.selectedType,
