@@ -21,6 +21,8 @@
           </th>
           <th>
           </th>
+          <th>
+          </th>          
         </tr>
       </thead>
       <tbody>
@@ -28,6 +30,14 @@
           <td v-for="key in columns" :key="key">
             {{ provider[key] }}
           </td>
+          <td>
+            <button
+              class="btn"
+              @click="goToEditProviderRoute(provider.id)"
+            >
+              EDIT
+            </button>
+          </td>          
           <td>
             <button
               class="btn"
@@ -64,6 +74,9 @@ export default {
   methods: {
     goToAddProviderRoute () {
       this.$router.push('create_provider')
+    },
+    goToEditProviderRoute (providerId) {
+      this.$router.push(`providers/${providerId}`)
     },
     fetchProviders () {
       this.loading = true

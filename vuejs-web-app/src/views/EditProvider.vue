@@ -2,14 +2,14 @@
   <div class="container">
     <div class="panel-provider">
       <div class="form-group">
-        Create Provider
+        Edit Provider
       </div>
-      <form @submit.prevent="createProvider">
-        <div 
+      <form @submit.prevent="editProvider">
+        <div
           class="form-group"
         >
           <input
-            v-model="name"
+            v-model="provider.name"
             class="form-control"
             type="text"
             name="name"
@@ -17,7 +17,7 @@
             required
           >
         </div>
-        <div 
+        <div
           class="form-group"
         >
           <button
@@ -29,7 +29,7 @@
               SAVE
             </div>
           </button>
-        </div>                                                        
+        </div>
       </form>
     </div>
   </div>
@@ -41,14 +41,26 @@ export default {
   data () {
     return {
       loading: false,
-      name: '',
+      provider : {
+        id: null,
+        name: ''
+      },
     }
   },
+  created () {
+    console.log('created')
+    const { id } = this.$route.params
+    console.log('providerId:', id)
+    const providers = this.$store.getters.provider(parseInt(id)) 
+    this.provider = providers.length ? providers[0] : null
+    console.log(this.provider)
+  },
   methods: {
-    createProvider () {
+    editProvider () {
       this.loading = true
-      this.$store.dispatch('createProvider', {
-        name: this.name
+      this.$store.dispatch('updateProvider', {
+        id: this.provider.id,
+        name: this.provider.name
       })
         .then(() => {})
         .catch(err => console.log(err))
@@ -57,4 +69,3 @@ export default {
   }
 }
 </script>
-

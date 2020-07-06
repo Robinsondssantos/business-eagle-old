@@ -7,6 +7,11 @@ export default {
   getters: {
     providers (state) {
       return state.providers
+    },
+    provider (state) {
+      return providerId => state.providers.filter(
+        provider => provider.id === providerId
+      )
     }
   },
   mutations: {
