@@ -7,7 +7,7 @@
       <div>
         <button
           class="btn btn-secondary"
-          @click="goToCreateIncomeType"
+          @click="openDialogMethod()"
         >
           Add Income Type
         </button>
@@ -49,31 +49,43 @@
         </tr>
       </tbody>
     </table>
+    <create-income-type-modal-app
+      :dialog="createIncomeTypeDialog"
+      :closeDialogMethod="closeDialogMethod"
+    ></create-income-type-modal-app>      
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import CreateIncomeTypeModal from './CreateIncomeTypeModal'
 
 export default {
+  components: {
+    'create-income-type-modal-app': CreateIncomeTypeModal
+  },    
   data () {
     return {
       loading: false,
-      columns: ['id', 'description']
+      columns: ['id', 'description'],
+      createIncomeTypeDialog: false
     }
-  },
-  created () {
-    this.fetchIncomeTypes()
   },
   computed: {
     ...mapGetters({
-      incomeTypes: 'incomeTypes'
+      incomeTypes: 'incomeTypes'      
     })
   },
+  created () {
+    this.fetchIncomeTypes()
+  },  
   methods: {
-    goToCreateIncomeType () {
-      this.$router.push('create_income_type')
+    openDialogMethod () {
+      this.createIncomeTypeDialog = true
+    },
+    closeDialogMethod () {
+      this.createIncomeTypeDialog = false 
     },
     goToEditIncomeTypeRoute (incomeTypeId) {
       this.$router.push(`income_types/${incomeTypeId}`)

@@ -87,9 +87,6 @@ export default {
     closeDialogMethod () {
       this.createProviderDialog = false 
     },
-    goToAddProviderRoute () {
-      this.$router.push('create_provider')
-    },
     goToEditProviderRoute (providerId) {
       this.$router.push(`providers/${providerId}`)
     },

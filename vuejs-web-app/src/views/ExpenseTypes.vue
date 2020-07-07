@@ -7,7 +7,7 @@
       <div>
         <button
           class="btn btn-secondary"
-          @click="goToCreateExpenseType"
+          @click="openDialogMethod()"
         >
           Add Expense Type
         </button>
@@ -49,18 +49,27 @@
         </tr>
       </tbody>
     </table>
+    <create-expense-type-modal-app
+      :dialog="createExpenseTypeDialog"
+      :closeDialogMethod="closeDialogMethod"
+    ></create-expense-type-modal-app>    
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import CreateExpenseTypeModal from './CreateExpenseTypeModal'
 
 export default {
+  components: {
+    'create-expense-type-modal-app': CreateExpenseTypeModal
+  },  
   data () {
     return {
       loading: false,
-      columns: ['id', 'description']
+      columns: ['id', 'description'],
+      createExpenseTypeDialog: false
     }
   },
   computed: {
@@ -72,9 +81,12 @@ export default {
     this.fetchExpenseTypes()
   },
   methods: {
-    goToCreateExpenseType () {
-      this.$router.push('create_expense_type')
+    openDialogMethod () {
+      this.createExpenseTypeDialog = true
     },
+    closeDialogMethod () {
+      this.createExpenseTypeDialog = false 
+    },    
     goToEditExpenseTypeRoute (expenseTypeId) {
       this.$router.push(`expense_types/${expenseTypeId}`)
     },    
