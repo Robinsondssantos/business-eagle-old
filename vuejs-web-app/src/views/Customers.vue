@@ -7,7 +7,7 @@
       <div>
         <button
           class="btn btn-secondary"
-          @click="goToCreateCustomer"
+          @click="openDialogMethod()"
         >
           Add Customer
         </button>
@@ -49,18 +49,27 @@
         </tr>
       </tbody>
     </table>
+    <create-customer-app
+      :dialog="createCustomerDialog"
+      :closeDialogMethod="closeDialogMethod"
+    ></create-customer-app>
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import CreateCustomer from './CreateCustomer'
 
 export default {
+  components: {
+    'create-customer-app': CreateCustomer
+  },
   data () {
     return {
       loading: false,
       columns: ['id', 'name'],
+      createCustomerDialog: false
     }
   },
   computed: {
@@ -72,8 +81,11 @@ export default {
     this.fetchCustomers()
   },
   methods: {
-    goToCreateCustomer () {
-      this.$router.push('create_customer')
+    openDialogMethod () {
+      this.createCustomerDialog = true
+    },
+    closeDialogMethod () {
+      this.createCustomerDialog = false
     },
     goToEditCustomerRoute (customerId) {
       this.$router.push(`customers/${customerId}`)

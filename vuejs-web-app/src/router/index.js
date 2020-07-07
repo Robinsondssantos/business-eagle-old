@@ -81,6 +81,12 @@ export default new Router({
           name: 'CreateExpenseType',
           component: () => import('../views/CreateExpenseType.vue'),
           props: true,
+        },
+        {
+          path: 'expense_types/:id',
+          name: 'EditExpenseType',
+          component: () => import('../views/EditExpenseType.vue'),
+          props: true,
         },        
         {
           path: 'expensesSummary',

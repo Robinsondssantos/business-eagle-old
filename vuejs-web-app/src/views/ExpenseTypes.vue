@@ -31,7 +31,6 @@
             {{ expenseType[key] }}
           </td>
           <td>
-          <td>
             <button
               class="btn"
               @click="goToEditExpenseTypeRoute(expenseType.id)"

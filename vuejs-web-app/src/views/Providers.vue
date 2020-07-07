@@ -7,7 +7,7 @@
       <div>
         <button
           class="btn btn-secondary"
-          @click="goToAddProviderRoute"
+          @click="openDialogMethod()"
         >
           Add Provider
         </button>
@@ -49,18 +49,27 @@
         </tr>
       </tbody>
     </table>
+    <create-provider-modal-app
+      :dialog="createProviderDialog"
+      :closeDialogMethod="closeDialogMethod"
+    ></create-provider-modal-app>
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import CreateProviderModal from './CreateProviderModal'
 
 export default {
+  components: {
+    'create-provider-modal-app': CreateProviderModal
+  },
   data () {
     return {
       loading: false,
-      columns: ['id', 'name']
+      columns: ['id', 'name'],
+      createProviderDialog: false
     }
   },
   computed: {
@@ -72,6 +81,12 @@ export default {
     this.fetchProviders()
   },
   methods: {
+    openDialogMethod () {
+      this.createProviderDialog = true
+    },
+    closeDialogMethod () {
+      this.createProviderDialog = false 
+    },
     goToAddProviderRoute () {
       this.$router.push('create_provider')
     },

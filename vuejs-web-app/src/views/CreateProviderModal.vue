@@ -1,15 +1,15 @@
 <template>
-  <div class="modal" v-if="dialog">
+  <div class="modal" v-if="dialog"> 
     <div class="modal-content">
-      <span
-        class="close"
+      <span 
+        class="close" 
         @click.prevent="closeDialog()"
       >&times;</span>
       <div class="form-group">
-        Create Customer
+        Create Provider
       </div>
-      <form @submit.prevent="createCustomer">
-        <div 
+      <form @submit.prevent="createProvider">
+        <div
           class="form-group"
         >
           <input
@@ -33,7 +33,7 @@
               SAVE
             </div>
           </button>
-        </div>                                                        
+        </div>
       </form>
     </div>
   </div>
@@ -62,9 +62,9 @@ export default {
     closeDialog () {
       this.closeDialogMethod()
     },
-    createCustomer () {
+    createProvider () {
       this.loading = true
-      this.$store.dispatch('createCustomer', {
+      this.$store.dispatch('createProvider', {
         name: this.name
       })
         .then(() => {})
@@ -116,4 +116,3 @@ export default {
   }
 
 </style>
-
