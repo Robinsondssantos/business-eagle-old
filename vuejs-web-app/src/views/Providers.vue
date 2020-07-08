@@ -7,6 +7,14 @@
       <div>
         <button
           class="btn btn-secondary"
+          @click="showModal"
+        >
+          Open modal!
+        </button>        
+      </div>
+      <div>
+        <button
+          class="btn btn-secondary"
           @click="openDialogMethod()"
         >
           Add Provider
@@ -56,23 +64,31 @@
         </tr>
       </tbody>
     </table>
+    <modal-app
+      v-show="isModalVisible"
+      @close="closeModal"
+    >
+    </modal-app>
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import Modal from '@/components/Modal/Modal'
 import CreateUpdateProviderModal from './CreateUpdateProviderModal'
 
 export default {
   components: {
+    'modal-app': Modal,
     'create-update-provider-modal-app': CreateUpdateProviderModal
   },
   data () {
     return {
       loading: false,
       columns: ['id', 'name'],
-      dialog: false
+      dialog: false,
+      isModalVisible: false
     }
   },
   computed: {
@@ -84,6 +100,12 @@ export default {
     this.fetchProviders()
   },
   methods: {
+    showModal () {
+      this.isModalVisible = true
+    },
+    closeModal () {
+      this.isModalVisible = false
+    },
     openDialogMethod () {
       this.dialog = true
     },
