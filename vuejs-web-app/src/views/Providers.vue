@@ -27,13 +27,20 @@
       </thead>
       <tbody>
         <tr v-for="provider in providers" :key="provider.id">
+
+          <create-update-provider-modal-app
+            :dialog="dialog"
+            :provider="provider"
+            :closeDialogMethod="closeDialogMethod"
+          ></create-update-provider-modal-app>  
+
           <td v-for="key in columns" :key="key">
             {{ provider[key] }}
           </td>
           <td>
             <button
               class="btn"
-              @click="goToEditProviderRoute(provider.id)"
+              @click="openDialogMethod()"
             >
               EDIT
             </button>
@@ -49,27 +56,23 @@
         </tr>
       </tbody>
     </table>
-    <create-provider-modal-app
-      :dialog="createProviderDialog"
-      :closeDialogMethod="closeDialogMethod"
-    ></create-provider-modal-app>
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
-import CreateProviderModal from './CreateProviderModal'
+import CreateUpdateProviderModal from './CreateUpdateProviderModal'
 
 export default {
   components: {
-    'create-provider-modal-app': CreateProviderModal
+    'create-update-provider-modal-app': CreateUpdateProviderModal
   },
   data () {
     return {
       loading: false,
       columns: ['id', 'name'],
-      createProviderDialog: false
+      dialog: false
     }
   },
   computed: {
@@ -82,13 +85,10 @@ export default {
   },
   methods: {
     openDialogMethod () {
-      this.createProviderDialog = true
+      this.dialog = true
     },
     closeDialogMethod () {
-      this.createProviderDialog = false 
-    },
-    goToEditProviderRoute (providerId) {
-      this.$router.push(`providers/${providerId}`)
+      this.dialog = false 
     },
     fetchProviders () {
       this.loading = true
