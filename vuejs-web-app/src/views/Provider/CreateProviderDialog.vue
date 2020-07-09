@@ -1,23 +1,25 @@
 <template>
-  <div class="container">
-    <div class="panel-provider">
-      <div class="form-group">
-        Create Provider
-      </div>
+  <app-base-create-dialog>
+    <template v-slot:title-button>
+      Add provider
+    </template>    
+    <template v-slot:title>
+      Add provider
+    </template>
+    <template v-slot:content>
       <form @submit.prevent="createProvider">
-        <div 
+        <div
           class="form-group"
         >
           <input
             v-model="name"
             class="form-control"
             type="text"
-            name="name"
             placeholder="Name"
             required
           >
         </div>
-        <div 
+        <div
           class="form-group"
         >
           <button
@@ -25,23 +27,26 @@
             type="submit"
           >
             <div v-if="loading" class="spinner"></div>
-            <div v-else>
-              SAVE
-            </div>
+            <div v-else>SAVE</div>
           </button>
-        </div>                                                        
+        </div>
       </form>
-    </div>
-  </div>
+    </template>
+  </app-base-create-dialog>
 </template>
 
 <script>
 
+import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
+
 export default {
+  components: {
+    'app-base-create-dialog': BaseCreateDialog
+  },
   data () {
     return {
       loading: false,
-      name: '',
+      name: ''
     }
   },
   methods: {
@@ -54,7 +59,6 @@ export default {
         .catch(err => console.log(err))
         .finally(() => { this.loading = false })
     }
-  }
+  }  
 }
 </script>
-

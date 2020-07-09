@@ -5,20 +5,8 @@
         Providers
       </div>
       <div>
-        <button
-          class="btn btn-secondary"
-          @click="showModal"
-        >
-          Open modal!
-        </button>        
-      </div>
-      <div>
-        <button
-          class="btn btn-secondary"
-          @click="openDialogMethod()"
-        >
-          Add Provider
-        </button>
+        <app-create-provider-dialog>          
+        </app-create-provider-dialog>
       </div>
     </div>
     <table>
@@ -36,59 +24,49 @@
       <tbody>
         <tr v-for="provider in providers" :key="provider.id">
 
-          <create-update-provider-modal-app
-            :dialog="dialog"
-            :provider="provider"
-            @close="closeDialogMethod"
-          ></create-update-provider-modal-app>  
-
           <td v-for="key in columns" :key="key">
             {{ provider[key] }}
           </td>
           <td>
-            <button
-              class="btn"
-              @click="openDialogMethod()"
-            >
-              EDIT
-            </button>
+            <app-update-provider-dialog
+              :provider="provider"
+            ></app-update-provider-dialog>
           </td>          
           <td>
-            <button
+            <!-- <button
               class="btn"
               @click="deleteProvider(provider.id)"
             >
               REMOVE
-            </button>
+            </button> -->
+            <app-delete-provider-dialog
+              :provider="provider"
+            ></app-delete-provider-dialog>            
           </td>
         </tr>
       </tbody>
     </table>
-    <modal-app
-      v-show="isModalVisible"
-      @close="closeModal"
-    >
-    </modal-app>
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
-import Modal from '@/components/Modal/Modal'
-import CreateUpdateProviderModal from './CreateUpdateProviderModal'
+import CreateProviderDialog from '@/views/Provider/CreateProviderDialog'
+import UpdateProviderDialog from '@/views/Provider/UpdateProviderDialog'
+import DeleteProviderDialog from '@/views/Provider/DeleteProviderDialog'
 
 export default {
   components: {
-    'modal-app': Modal,
-    'create-update-provider-modal-app': CreateUpdateProviderModal
+    'app-create-provider-dialog': CreateProviderDialog,
+    'app-update-provider-dialog': UpdateProviderDialog,
+    'app-delete-provider-dialog': DeleteProviderDialog
   },
   data () {
     return {
       loading: false,
       columns: ['id', 'name'],
-      dialog: false,
-      isModalVisible: false
+      dialog: false
     }
   },
   computed: {
@@ -100,18 +78,6 @@ export default {
     this.fetchProviders()
   },
   methods: {
-    showModal () {
-      this.isModalVisible = true
-    },
-    closeModal () {
-      this.isModalVisible = false
-    },
-    openDialogMethod () {
-      this.dialog = true
-    },
-    closeDialogMethod () {
-      this.dialog = false 
-    },
     fetchProviders () {
       this.loading = true
       this.$store.dispatch('fetchProviders')

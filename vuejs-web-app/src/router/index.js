@@ -96,13 +96,7 @@ export default new Router({
         {
           path: 'providers',
           name: 'Providers',
-          component: () => import('../views/Providers.vue')
-        },
-        {
-          path: 'create_provider',
-          name: 'CreateProvider',
-          component: () => import('../views/CreateProvider.vue'),
-          props: true,
+          component: () => import('@/views/Provider/Providers.vue')
         },
         {
           path: 'providers/:id',
