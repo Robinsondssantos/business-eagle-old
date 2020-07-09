@@ -3,7 +3,7 @@
     <div class="modal-content">
       <span 
         class="close" 
-        @click.prevent="closeDialog()"
+        @click.prevent="close()"
       >&times;</span>
       <div class="form-group">
         Create/Update Provider
@@ -50,10 +50,6 @@ export default {
     provider: {
       type: Object,
       required: false
-    },
-    closeDialogMethod: {
-      type: Function,
-      required: true
     }
   },
   data () {
@@ -78,8 +74,8 @@ export default {
     }
   },
   methods: {
-    closeDialog () {
-      this.closeDialogMethod()
+    close() {
+      this.$emit('close')
     },
     createUpdateProvider () {
       if (this.id) {
@@ -114,17 +110,16 @@ export default {
 <style scoped>
 
   .modal {
-    /* display: block; */
     position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .modal-content {

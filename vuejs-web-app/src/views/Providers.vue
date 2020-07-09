@@ -39,7 +39,7 @@
           <create-update-provider-modal-app
             :dialog="dialog"
             :provider="provider"
-            :closeDialogMethod="closeDialogMethod"
+            @close="closeDialogMethod"
           ></create-update-provider-modal-app>  
 
           <td v-for="key in columns" :key="key">
@@ -143,8 +143,16 @@ export default {
   }
 
   th, td {
-    border: 1px solid #ddd;
     padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #f5f5f5;
   }
 
   .panel-table {
