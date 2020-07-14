@@ -5,12 +5,8 @@
         Expenses
       </div>
       <div>
-        <button
-          class="btn btn-secondary"
-          @click="goToCreateExpense"
-        >
-          Add Expense
-        </button>
+        <app-create-expense>          
+        </app-create-expense>
       </div>
     </div>
     <table>
@@ -31,20 +27,14 @@
             {{ expense[key] }}
           </td>
           <td>
-            <button
-              class="btn"
-              @click="goToEditExpenseRoute(expense.id)"
-            >
-              EDIT
-            </button>
+            <app-update-expense
+              :expense="expense"
+            ></app-update-expense>
           </td>          
           <td>
-            <button
-              class="btn"
-              @click="deleteExpense(expense.id)"
-            >
-              REMOVE
-            </button>
+            <app-delete-expense
+              :expense="expense"
+            ></app-delete-expense>            
           </td>          
         </tr>
       </tbody>
@@ -55,8 +45,16 @@
 <script>
 
 import { mapGetters } from 'vuex'
+import CreateExpense from '@/views/Expense/CreateExpense'
+import UpdateExpense from '@/views/Expense/UpdateExpense'
+import DeleteExpense from '@/views/Expense/DeleteExpense'
 
 export default {
+  components: {
+    'app-create-expense': CreateExpense,
+    'app-update-expense': UpdateExpense,
+    'app-delete-expense': DeleteExpense
+  },
   data () {
     return {
       loading: false,
@@ -72,12 +70,6 @@ export default {
     this.fetchExpenses()
   },
   methods: {
-    goToCreateExpense () {
-      this.$router.push('create_expense')
-    },
-    goToEditExpenseRoute (expenseId) {
-      this.$router.push(`expenses/${expenseId}`)
-    },    
     fetchExpenses () {
       this.loading = true
       this.$store.dispatch('fetchExpenses')
@@ -87,16 +79,7 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    },
-    deleteExpense (expenseId) {
-      this.loading = true
-      this.$store.dispatch('deleteExpense', expenseId)
-        .then(result => {
-          console.log('result:', result)
-        })
-        .catch(err => console.log(err))
-        .finally(() => this.loading = false)
-    }    
+    }  
   }
 }
 </script>

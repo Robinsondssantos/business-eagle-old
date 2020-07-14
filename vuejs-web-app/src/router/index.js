@@ -55,19 +55,19 @@ export default new Router({
         {
           path: 'expenses',
           name: 'Expenses',
-          component: () => import('../views/Expenses.vue'),
+          component: () => import('../views/Expense/Expenses.vue'),
           props: true,
         },
         {
           path: 'create_expense',
           name: 'CreateExpense',
-          component: () => import('../views/CreateExpense.vue'),
+          component: () => import('../views/Expense/CreateExpense.vue'),
           props: true,
         },
         {
           path: 'expenses/:id',
-          name: 'EditExpense',
-          component: () => import('../views/EditExpense.vue'),
+          name: 'UpdateExpense',
+          component: () => import('../views/Expense/UpdateExpense.vue'),
           props: true,
         },        
         {

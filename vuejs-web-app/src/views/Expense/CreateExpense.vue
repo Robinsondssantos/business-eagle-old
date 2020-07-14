@@ -1,18 +1,20 @@
 <template>
-  <div class="container">
-    <div class="panel-expense">
-      <div class="form-group">
-        Edit Expense
-      </div>
-      <form @submit.prevent="editExpense">
+  <app-base-create-dialog>
+    <template v-slot:title-button>
+      Add provider
+    </template>    
+    <template v-slot:title>
+      Add provider
+    </template>
+    <template v-slot:content>
+      <form @submit.prevent="createExpense">
         <div 
           class="form-group"
         >
           <input
-            v-model="expense.description"
+            v-model="description"
             class="form-control"
             type="text"
-            name="description"
             placeholder="Description"
             required
           >
@@ -21,7 +23,7 @@
           class="form-group"
         >
           <select
-            v-model="expense.selectedProvider"
+            v-model="selectedProvider"
             class="form-control"
           >
             <option v-for="provider in providers"  
@@ -36,7 +38,7 @@
           class="form-group"
         >
           <select 
-            v-model="expense.selectedType"
+            v-model="selectedType"
             class="form-control"
           >
             <option v-for="type in expenseTypes" 
@@ -51,7 +53,7 @@
           class="form-group"
         >
           <input
-            v-model="expense.dateToPay"
+            v-model="dateToPay"
             class="form-control"
             type="text"
             name="dateToPay"
@@ -63,7 +65,7 @@
           class="form-group"
         >
           <input
-            v-model="expense.paidIn"
+            v-model="paidIn"
             class="form-control"
             type="text"
             name="paidIn"
@@ -75,7 +77,7 @@
           class="form-group"
         >
           <input
-            v-model="expense.value"
+            v-model="value"
             class="form-control"
             type="text"
             name="value"
@@ -87,7 +89,7 @@
           class="form-group"
         >
           <input
-            v-model="expense.status"
+            v-model="status"
             class="form-control"
             type="text"
             name="status"
@@ -109,13 +111,14 @@
           </button>
         </div>                                                        
       </form>
-    </div>
-  </div>
+    </template>
+  </app-base-create-dialog>
 </template>
 
 <script>
 
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
+import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
 
       // Expenses:
       // Provider
@@ -133,19 +136,19 @@
       // value
 
 export default {
+  components: {
+    'app-base-create-dialog': BaseCreateDialog
+  },
   data () {
     return {
       loading: false,
-      expense: {
-        id: null,
-        description: '',
-        selectedProvider: null,
-        selectedType: null,
-        dateToPay: '',
-        paidIn: '',
-        value: '',
-        status: '',
-      }
+      description: '',
+      selectedProvider: null,
+      selectedType: null,
+      dateToPay: '',
+      paidIn: '',
+      value: '',
+      status: '',
     }
   },
   computed: {
@@ -158,44 +161,20 @@ export default {
     this.fetchProviders()
     this.fetchExpenseTypes()
   },
-  mounted () {
-    const { id } = this.$route.params
-    const expenses = this.$store.getters.expense(parseInt(id))
-    this.expense = expenses.length ? expenses[0] : null
-  },
-  methods: {
-    fetchProviders () {
-      this.loading = true
-      this.$store.dispatch('fetchProviders')
-        .then(result => {
-          console.log('result:', result)
-        })
-        .catch(err => console.log(err))
-        .finally(() => this.loading = false)
-    },    
-    fetchExpenseTypes () {
-      this.loading = true
-      this.$store.dispatch('fetchExpenseTypes')
-        .then(result => {
-          console.log('result:', result)
-        })
-        .catch(err => console.log(err))
-        .finally(() => this.loading = false)
-    },        
-    editExpense () {
+  methods: {     
+    createExpense () {
       console.log('provider', this.selectedProvider)
       console.log('type', this.selectedType)      
       this.loading = true
-      this.$store.dispatch('updateExpense', {
-        id: this.expense.id,
-        description: this.expense.description,
-        provider_id: this.expense.selectedProvider,
-        type_id: this.expense.selectedType,
+      this.$store.dispatch('createExpense', {
+        description: this.description,
+        provider_id: this.selectedProvider,
+        type_id: this.selectedType,
         // date_to_pay: this.dateToPay,
         date_to_pay: new Date(),
         // paid_in: this.paidIn,
         paid_in: new Date(),
-        value: this.expense.value,
+        value: this.value,
         // status: this.status,
       })
         .then(() => {})

@@ -1,15 +1,18 @@
 <template>
-  <div class="container">
-    <div class="panel-expense">
-      <div class="form-group">
-        Expense
-      </div>
-      <form @submit.prevent="createExpense">
+  <app-base-edit-dialog>
+    <template v-slot:title-button>
+      Edit
+    </template>      
+    <template v-slot:title>
+      Edit provider
+    </template>
+    <template v-slot:content>
+      <form @submit.prevent="updateExpense">
         <div 
           class="form-group"
         >
           <input
-            v-model="description"
+            v-model="expense.description"
             class="form-control"
             type="text"
             name="description"
@@ -21,7 +24,7 @@
           class="form-group"
         >
           <select
-            v-model="selectedProvider"
+            v-model="expense.selectedProvider"
             class="form-control"
           >
             <option v-for="provider in providers"  
@@ -36,7 +39,7 @@
           class="form-group"
         >
           <select 
-            v-model="selectedType"
+            v-model="expense.selectedType"
             class="form-control"
           >
             <option v-for="type in expenseTypes" 
@@ -51,7 +54,7 @@
           class="form-group"
         >
           <input
-            v-model="dateToPay"
+            v-model="expense.dateToPay"
             class="form-control"
             type="text"
             name="dateToPay"
@@ -63,7 +66,7 @@
           class="form-group"
         >
           <input
-            v-model="paidIn"
+            v-model="expense.paidIn"
             class="form-control"
             type="text"
             name="paidIn"
@@ -75,7 +78,7 @@
           class="form-group"
         >
           <input
-            v-model="value"
+            v-model="expense.value"
             class="form-control"
             type="text"
             name="value"
@@ -87,7 +90,7 @@
           class="form-group"
         >
           <input
-            v-model="status"
+            v-model="expense.status"
             class="form-control"
             type="text"
             name="status"
@@ -109,13 +112,14 @@
           </button>
         </div>                                                        
       </form>
-    </div>
-  </div>
+    </template>
+  </app-base-edit-dialog>
 </template>
 
 <script>
 
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
+import BaseEditDialog from '@/components/Dialog/BaseEditDialog'
 
       // Expenses:
       // Provider
@@ -133,16 +137,18 @@
       // value
 
 export default {
+  components: {
+    'app-base-edit-dialog': BaseEditDialog
+  },
+  props: {
+    expense: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
-      loading: false,
-      description: '',
-      selectedProvider: null,
-      selectedType: null,
-      dateToPay: '',
-      paidIn: '',
-      value: '',
-      status: '',
+      loading: false
     }
   },
   computed: {
@@ -174,19 +180,20 @@ export default {
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
     },        
-    createExpense () {
+    updateExpense () {
       console.log('provider', this.selectedProvider)
       console.log('type', this.selectedType)      
       this.loading = true
-      this.$store.dispatch('createExpense', {
-        description: this.description,
-        provider_id: this.selectedProvider,
-        type_id: this.selectedType,
+      this.$store.dispatch('updateExpense', {
+        id: this.expense.id,
+        description: this.expense.description,
+        provider_id: this.expense.selectedProvider,
+        type_id: this.expense.selectedType,
         // date_to_pay: this.dateToPay,
         date_to_pay: new Date(),
         // paid_in: this.paidIn,
         paid_in: new Date(),
-        value: this.value,
+        value: this.expense.value,
         // status: this.status,
       })
         .then(() => {})
