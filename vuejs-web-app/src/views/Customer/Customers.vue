@@ -5,12 +5,8 @@
         Customers
       </div>
       <div>
-        <button
-          class="btn btn-secondary"
-          @click="openDialogMethod()"
-        >
-          Add Customer
-        </button>
+        <app-create-customer-dialog>          
+        </app-create-customer-dialog>
       </div>
     </div>
     <table>
@@ -31,45 +27,38 @@
             {{ customer[key] }}
           </td>
           <td>
-            <button
-              class="btn"
-              @click="goToEditCustomerRoute(customer.id)"
-            >
-              EDIT
-            </button>
+            <app-update-customer-dialog
+              :customer="customer"
+            ></app-update-customer-dialog>
           </td>          
           <td>
-            <button
-              class="btn"
-              @click="deleteCustomer(customer.id)"
-            >
-              REMOVE
-            </button>
+            <app-delete-customer-dialog
+              :customer="customer"
+            ></app-delete-customer-dialog>              
           </td>
         </tr>
       </tbody>
     </table>
-    <create-customer-app
-      :dialog="createCustomerDialog"
-      :closeDialogMethod="closeDialogMethod"
-    ></create-customer-app>
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
-import CreateCustomer from './CreateCustomer'
+import CreateCustomerDialog from '@/views/Customer/CreateCustomerDialog'
+import UpdateCustomerDialog from '@/views/Customer/UpdateCustomerDialog'
+import DeleteCustomerDialog from '@/views/Customer/DeleteCustomerDialog'
 
 export default {
   components: {
-    'create-customer-app': CreateCustomer
+    'app-create-customer-dialog': CreateCustomerDialog,
+    'app-update-customer-dialog': UpdateCustomerDialog,
+    'app-delete-customer-dialog': DeleteCustomerDialog
   },
   data () {
     return {
       loading: false,
-      columns: ['id', 'name'],
-      createCustomerDialog: false
+      columns: ['id', 'name']
     }
   },
   computed: {
@@ -81,15 +70,6 @@ export default {
     this.fetchCustomers()
   },
   methods: {
-    openDialogMethod () {
-      this.createCustomerDialog = true
-    },
-    closeDialogMethod () {
-      this.createCustomerDialog = false
-    },
-    goToEditCustomerRoute (customerId) {
-      this.$router.push(`customers/${customerId}`)
-    },
     fetchCustomers () {
       this.loading = true
       this.$store.dispatch('fetchCustomers')

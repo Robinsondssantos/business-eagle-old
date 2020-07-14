@@ -33,12 +33,6 @@
             ></app-update-provider-dialog>
           </td>          
           <td>
-            <!-- <button
-              class="btn"
-              @click="deleteProvider(provider.id)"
-            >
-              REMOVE
-            </button> -->
             <app-delete-provider-dialog
               :provider="provider"
             ></app-delete-provider-dialog>            
@@ -65,8 +59,7 @@ export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'name'],
-      dialog: false
+      columns: ['id', 'name']
     }
   },
   computed: {

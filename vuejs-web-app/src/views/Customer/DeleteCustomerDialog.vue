@@ -4,14 +4,14 @@
       Delete
     </template>     
     <template v-slot:title>
-      Delete provider
+      Delete customer
     </template>
     <template v-slot:content>
-      <form @submit.prevent="removeProvider">
+      <form @submit.prevent="removeCustomer">
         <div
           class="form-group"
         >
-          <span>Delete <strong>{{ provider.name }}</strong>?</span>
+          <span>Delete <strong>{{ customer.name }}</strong>?</span>
         </div>
         <div
           class="form-group"
@@ -38,7 +38,7 @@ export default {
     'app-base-delete-dialog': BaseDeleteDialog
   },
   props: {
-    provider: {
+    customer: {
       type: Object,
       required: true
     }
@@ -49,11 +49,11 @@ export default {
     }
   },
   methods: {
-    removeProvider () {
+    removeCustomer () {
       this.loading = true
-      this.$store.dispatch('removeProvider', {
-        id: this.provider.id,
-        name: this.provider.name
+      this.$store.dispatch('removeCustomer', {
+        id: this.customer.id,
+        name: this.customer.name
       })
         .then(() => {})
         .catch(err => console.log(err))

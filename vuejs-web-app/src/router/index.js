@@ -100,25 +100,25 @@ export default new Router({
         },
         {
           path: 'providers/:id',
-          name: 'EditProvider',
-          component: () => import('../views/EditProvider.vue'),
+          name: 'UpdateProvider',
+          component: () => import('../views/Provider/UpdateProviderDialog.vue'),
           props: true,
         },       
         {
           path: 'customers',
           name: 'Customers',
-          component: () => import('../views/Customers.vue')
+          component: () => import('../views/Customer/Customers.vue')
         },
         {
           path: 'create_customer',
           name: 'CreateCustomer',
-          component: () => import('../views/CreateCustomer.vue'),
+          component: () => import('../views/Customer/CreateCustomerDialog.vue'),
           props: true,
         },
         {
           path: 'customers/:id',
-          name: 'EditCustomer',
-          component: () => import('../views/EditCustomer.vue'),
+          name: 'UpdateCustomer',
+          component: () => import('../views/Customer/UpdateCustomerDialog.vue'),
           props: true,
         },                          
         {

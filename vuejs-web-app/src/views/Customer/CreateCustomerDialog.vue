@@ -1,18 +1,20 @@
 <template>
-  <div class="container">
-    <div class="panel-customer">
-      <div class="form-group">
-        Edit Customer
-      </div>
-      <form @submit.prevent="editCustomer">
+  <app-base-create-dialog>
+    <template v-slot:title-button>
+      Add customer
+    </template>    
+    <template v-slot:title>
+      Add customer
+    </template>
+    <template v-slot:content>
+      <form @submit.prevent="createCustomer">
         <div 
           class="form-group"
         >
           <input
-            v-model="customer.name"
+            v-model="name"
             class="form-control"
             type="text"
-            name="name"
             placeholder="Name"
             required
           >
@@ -31,33 +33,29 @@
           </button>
         </div>                                                        
       </form>
-    </div>
-  </div>
+    </template>
+  </app-base-create-dialog>
 </template>
 
 <script>
 
+import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
+
 export default {
+  components: {
+    'app-base-create-dialog': BaseCreateDialog
+  },
   data () {
     return {
       loading: false,
-      customer: {
-        id: null,
-        name: ''
-      },
+      name: '',
     }
   },
-  created () {
-    const { id } = this.$route.params
-    const customers = this.$store.getters.customer(parseInt(id))
-    this.customer = customers.length ? customers[0] : null
-  },
   methods: {
-    editCustomer () {
+    createCustomer () {
       this.loading = true
-      this.$store.dispatch('updateCustomer', {
-        id: this.customer.id,
-        name: this.customer.name
+      this.$store.dispatch('createCustomer', {
+        name: this.name
       })
         .then(() => {})
         .catch(err => console.log(err))
@@ -66,4 +64,3 @@ export default {
   }
 }
 </script>
-

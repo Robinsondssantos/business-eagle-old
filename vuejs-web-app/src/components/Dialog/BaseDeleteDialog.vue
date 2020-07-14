@@ -60,7 +60,7 @@ export default {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 500px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
   }
