@@ -79,16 +79,7 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    },
-    deleteCustomer (customerId) {
-      this.loading = true
-      this.$store.dispatch('deleteCustomer', customerId)
-        .then(result => {
-          console.log('result:', result)
-        })
-        .catch(err => console.log(err))
-        .finally(() => this.loading = false)
-    }    
+    }  
   }
 }
 </script>

@@ -51,10 +51,7 @@ export default {
   methods: {
     removeCustomer () {
       this.loading = true
-      this.$store.dispatch('removeCustomer', {
-        id: this.customer.id,
-        name: this.customer.name
-      })
+      this.$store.dispatch('deleteCustomer', this.customer.id)
         .then(() => {})
         .catch(err => console.log(err))
         .finally(() => { this.loading = false })

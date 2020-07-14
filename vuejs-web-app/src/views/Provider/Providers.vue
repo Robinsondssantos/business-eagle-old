@@ -80,15 +80,6 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    },
-    deleteProvider (providerId) {
-      this.loading = true
-      this.$store.dispatch('deleteProvider', providerId)
-        .then(result => {
-          console.log('result:', result)
-        })
-        .catch(err => console.log(err))
-        .finally(() => this.loading = false)
     }
   }
 }

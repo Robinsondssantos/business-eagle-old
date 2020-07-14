@@ -51,10 +51,7 @@ export default {
   methods: {
     removeProvider () {
       this.loading = true
-      this.$store.dispatch('removeProvider', {
-        id: this.provider.id,
-        name: this.provider.name
-      })
+      this.$store.dispatch('deleteProvider', this.provider.id)
         .then(() => {})
         .catch(err => console.log(err))
         .finally(() => { this.loading = false })
