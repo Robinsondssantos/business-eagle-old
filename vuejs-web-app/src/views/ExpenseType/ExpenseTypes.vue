@@ -5,12 +5,8 @@
         Expense Types
       </div>
       <div>
-        <button
-          class="btn btn-secondary"
-          @click="openDialogMethod()"
-        >
-          Add Expense Type
-        </button>
+        <app-create-expense-type>
+        </app-create-expense-type>
       </div>
     </div>
     <table>
@@ -31,45 +27,38 @@
             {{ expenseType[key] }}
           </td>
           <td>
-            <button
-              class="btn"
-              @click="goToEditExpenseTypeRoute(expenseType.id)"
-            >
-              EDIT
-            </button>
+            <app-update-expense-type
+              :expenseType="expenseType"
+            ></app-update-expense-type>
           </td> 
           <td>            
-            <button
-              class="btn"
-              @click="deleteExpenseType(expenseType.id)"
-            >
-              REMOVE
-            </button>
+            <app-delete-expense-type
+              :expenseType="expenseType"
+            ></app-delete-expense-type>
           </td>          
         </tr>
       </tbody>
-    </table>
-    <create-expense-type-modal-app
-      :dialog="createExpenseTypeDialog"
-      :closeDialogMethod="closeDialogMethod"
-    ></create-expense-type-modal-app>    
+    </table>  
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
-import CreateExpenseTypeModal from './CreateExpenseTypeModal'
+import CreateExpenseType from '@/views/ExpenseType/CreateExpenseType'
+import UpdateExpenseType from '@/views/ExpenseType/UpdateExpenseType'
+import DeleteExpenseType from '@/views/ExpenseType/DeleteExpenseType'
 
 export default {
   components: {
-    'create-expense-type-modal-app': CreateExpenseTypeModal
-  },  
+    'app-create-expense-type': CreateExpenseType,
+    'app-update-expense-type': UpdateExpenseType,
+    'app-delete-expense-type': DeleteExpenseType
+  },
   data () {
     return {
       loading: false,
-      columns: ['id', 'description'],
-      createExpenseTypeDialog: false
+      columns: ['id', 'description']
     }
   },
   computed: {
@@ -80,16 +69,7 @@ export default {
   created () {
     this.fetchExpenseTypes()
   },
-  methods: {
-    openDialogMethod () {
-      this.createExpenseTypeDialog = true
-    },
-    closeDialogMethod () {
-      this.createExpenseTypeDialog = false 
-    },    
-    goToEditExpenseTypeRoute (expenseTypeId) {
-      this.$router.push(`expense_types/${expenseTypeId}`)
-    },    
+  methods: {   
     fetchExpenseTypes () {
       this.loading = true
       this.$store.dispatch('fetchExpenseTypes')
@@ -99,16 +79,7 @@ export default {
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    },
-    deleteExpenseType (expenseTypeId) {
-      this.loading = true
-      this.$store.dispatch('deleteExpenseType', expenseTypeId)
-        .then(result => {
-          console.log('result:', result)
-        })
-        .catch(err => console.log(err))
-        .finally(() => this.loading = false)
-    }  
+    } 
   }
 }
 </script>

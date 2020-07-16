@@ -1,20 +1,21 @@
 <template>
-  <app-base-create-dialog>
+  <app-base-edit-dialog>
     <template v-slot:title-button>
-      Add expense
-    </template>    
+      Edit
+    </template>      
     <template v-slot:title>
-      Add expense
+      Edit income
     </template>
     <template v-slot:content>
-      <form @submit.prevent="createExpense">
+      <form @submit.prevent="updateIncome">
         <div 
           class="form-group"
         >
           <input
-            v-model="description"
+            v-model="income.description"
             class="form-control"
             type="text"
+            name="description"
             placeholder="Description"
             required
           >
@@ -23,14 +24,14 @@
           class="form-group"
         >
           <select
-            v-model="selectedProvider"
+            v-model="income.selectedCustomer"
             class="form-control"
           >
-            <option v-for="provider in providers"  
-              :value="provider.id" 
-              :key="provider.id"
+            <option v-for="customer in customers"  
+              :value="customer.id" 
+              :key="customer.id"
             >
-              {{ provider.name }}
+              {{ customer.name }}
             </option>
           </select>
         </div>
@@ -38,10 +39,10 @@
           class="form-group"
         >
           <select 
-            v-model="selectedType"
+            v-model="income.selectedType"
             class="form-control"
           >
-            <option v-for="type in expenseTypes" 
+            <option v-for="type in incomeTypes" 
               :value="type.id" 
               :key="type.id"
             >
@@ -53,11 +54,11 @@
           class="form-group"
         >
           <input
-            v-model="dateToPay"
+            v-model="income.dateToReceive"
             class="form-control"
             type="text"
-            name="dateToPay"
-            placeholder="Date to pay"
+            name="dateToReceive"
+            placeholder="Date to receive"
             required
           >
         </div>
@@ -65,11 +66,11 @@
           class="form-group"
         >
           <input
-            v-model="paidIn"
+            v-model="income.receivedIn"
             class="form-control"
             type="text"
-            name="paidIn"
-            placeholder="Paid in"
+            name="receivedIn"
+            placeholder="Receive in"
             required
           >
         </div>
@@ -77,7 +78,7 @@
           class="form-group"
         >
           <input
-            v-model="value"
+            v-model="income.value"
             class="form-control"
             type="text"
             name="value"
@@ -89,7 +90,7 @@
           class="form-group"
         >
           <input
-            v-model="status"
+            v-model="income.status"
             class="form-control"
             type="text"
             name="status"
@@ -112,20 +113,20 @@
         </div>                                                        
       </form>
     </template>
-  </app-base-create-dialog>
+  </app-base-edit-dialog>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
-import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
+import BaseEditDialog from '@/components/Dialog/BaseEditDialog'
 
-      // Expenses:
-      // Provider
+      // Incomes:
+      // Customer
       // description
-      // expense type
+      // income type
 
-      // partial expense:
+      // partial income:
       // date to pay
       // paid date
       // value
@@ -137,64 +138,62 @@ import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
 
 export default {
   components: {
-    'app-base-create-dialog': BaseCreateDialog
+    'app-base-edit-dialog': BaseEditDialog
+  },
+  props: {
+    income: {
+      type: Object,
+      required: true
+    }
   },
   data () {
     return {
-      loading: false,
-      description: '',
-      selectedProvider: null,
-      selectedType: null,
-      dateToPay: '',
-      paidIn: '',
-      value: '',
-      status: '',
+      loading: false
     }
   },
   computed: {
     ...mapGetters({
-      providers: 'providers',
-      expenseTypes: 'expenseTypes'
+      customers: 'customers',
+      incomeTypes: 'incomeTypes'
     })
   },
   created () {
-    this.fetchProviders()
-    this.fetchExpenseTypes()
+    this.fetchCustomers()
+    this.fetchIncomeTypes()
   },
-  methods: {  
-    fetchProviders () {
+  methods: {
+    fetchCustomers () {
       this.loading = true
-      this.$store.dispatch('fetchProviders')
+      this.$store.dispatch('fetchCustomers')
         .then(result => {
           console.log('result:', result)
-          this.data = result
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    },  
-    fetchExpenseTypes () {
+    },    
+    fetchIncomeTypes () {
       this.loading = true
-      this.$store.dispatch('fetchExpenseTypes')
+      this.$store.dispatch('fetchIncomeTypes')
         .then(result => {
           console.log('result:', result)
-          this.data = result
         })
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
-    }, 
-    createExpense () {
-      console.log('provider', this.selectedProvider)
+    },        
+    updateIncome () {
+      console.log('customer', this.selectedCustomer)
       console.log('type', this.selectedType)      
       this.loading = true
-      this.$store.dispatch('createExpense', {
-        description: this.description,
-        provider_id: this.selectedProvider,
-        type_id: this.selectedType,
-        // date_to_pay: this.dateToPay,
+      this.$store.dispatch('updateIncome', {
+        id: this.income.id,
+        description: this.income.description,
+        customer_id: this.income.selectedCustomer,
+        type_id: this.income.selectedType,
+        // date_to_pay: this.dateToReceive,
         date_to_pay: new Date(),
-        // paid_in: this.paidIn,
+        // paid_in: this.receivedIn,
         paid_in: new Date(),
-        value: this.value,
+        value: this.income.value,
         // status: this.status,
       })
         .then(() => {})

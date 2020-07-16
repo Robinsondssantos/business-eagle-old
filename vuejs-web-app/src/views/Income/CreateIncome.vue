@@ -1,10 +1,10 @@
 <template>
   <app-base-create-dialog>
     <template v-slot:title-button>
-      Add expense
+      Add income
     </template>    
     <template v-slot:title>
-      Add expense
+      Add income
     </template>
     <template v-slot:content>
       <form @submit.prevent="createExpense">
@@ -23,14 +23,14 @@
           class="form-group"
         >
           <select
-            v-model="selectedProvider"
+            v-model="selectedCustomer"
             class="form-control"
           >
-            <option v-for="provider in providers"  
-              :value="provider.id" 
-              :key="provider.id"
+            <option v-for="customer in customers"  
+              :value="customer.id" 
+              :key="customer.id"
             >
-              {{ provider.name }}
+              {{ customer.name }}
             </option>
           </select>
         </div>
@@ -41,7 +41,7 @@
             v-model="selectedType"
             class="form-control"
           >
-            <option v-for="type in expenseTypes" 
+            <option v-for="type in incomeTypes" 
               :value="type.id" 
               :key="type.id"
             >
@@ -53,11 +53,11 @@
           class="form-group"
         >
           <input
-            v-model="dateToPay"
+            v-model="dateToReceive"
             class="form-control"
             type="text"
-            name="dateToPay"
-            placeholder="Date to pay"
+            name="dateToReceive"
+            placeholder="Date to receive"
             required
           >
         </div>
@@ -65,11 +65,11 @@
           class="form-group"
         >
           <input
-            v-model="paidIn"
+            v-model="receivedIn"
             class="form-control"
             type="text"
-            name="paidIn"
-            placeholder="Paid in"
+            name="receivedIn"
+            placeholder="Receive in"
             required
           >
         </div>
@@ -121,11 +121,11 @@ import { mapGetters } from 'vuex'
 import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
 
       // Expenses:
-      // Provider
+      // Customer
       // description
-      // expense type
+      // income type
 
-      // partial expense:
+      // partial income:
       // date to pay
       // paid date
       // value
@@ -143,28 +143,28 @@ export default {
     return {
       loading: false,
       description: '',
-      selectedProvider: null,
+      selectedCustomer: null,
       selectedType: null,
-      dateToPay: '',
-      paidIn: '',
+      dateToReceive: '',
+      receivedIn: '',
       value: '',
       status: '',
     }
   },
   computed: {
     ...mapGetters({
-      providers: 'providers',
-      expenseTypes: 'expenseTypes'
+      customers: 'customers',
+      incomeTypes: 'incomeTypes'
     })
   },
   created () {
-    this.fetchProviders()
+    this.fetchCustomers()
     this.fetchExpenseTypes()
   },
   methods: {  
-    fetchProviders () {
+    fetchCustomers () {
       this.loading = true
-      this.$store.dispatch('fetchProviders')
+      this.$store.dispatch('fetchCustomers')
         .then(result => {
           console.log('result:', result)
           this.data = result
@@ -183,16 +183,16 @@ export default {
         .finally(() => this.loading = false)
     }, 
     createExpense () {
-      console.log('provider', this.selectedProvider)
+      console.log('customer', this.selectedCustomer)
       console.log('type', this.selectedType)      
       this.loading = true
       this.$store.dispatch('createExpense', {
         description: this.description,
-        provider_id: this.selectedProvider,
+        customer_id: this.selectedCustomer,
         type_id: this.selectedType,
-        // date_to_pay: this.dateToPay,
+        // date_to_pay: this.dateToReceive,
         date_to_pay: new Date(),
-        // paid_in: this.paidIn,
+        // paid_in: this.receivedIn,
         paid_in: new Date(),
         value: this.value,
         // status: this.status,
