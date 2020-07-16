@@ -7,7 +7,7 @@
       Add income
     </template>
     <template v-slot:content>
-      <form @submit.prevent="createExpense">
+      <form @submit.prevent="createIncome">
         <div 
           class="form-group"
         >
@@ -120,7 +120,7 @@
 import { mapGetters } from 'vuex'
 import BaseCreateDialog from '@/components/Dialog/BaseCreateDialog'
 
-      // Expenses:
+      // Incomes:
       // Customer
       // description
       // income type
@@ -182,11 +182,11 @@ export default {
         .catch(err => console.log(err))
         .finally(() => this.loading = false)
     }, 
-    createExpense () {
+    createIncome () {
       console.log('customer', this.selectedCustomer)
       console.log('type', this.selectedType)      
       this.loading = true
-      this.$store.dispatch('createExpense', {
+      this.$store.dispatch('createIncome', {
         description: this.description,
         customer_id: this.selectedCustomer,
         type_id: this.selectedType,
