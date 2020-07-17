@@ -11,18 +11,21 @@
         <div 
           class="form-group"
         >
+          <label for="description">Description</label>
           <input
+            id="description"
             v-model="description"
             class="form-control"
             type="text"
-            placeholder="Description"
             required
           >
         </div>
         <div 
           class="form-group"
         >
+          <label for="provider">Provider</label>
           <select
+            id="provider"
             v-model="selectedProvider"
             class="form-control"
           >
@@ -37,7 +40,9 @@
         <div 
           class="form-group"
         >
-          <select 
+          <label for="type">Type</label>
+          <select
+            id="type" 
             v-model="selectedType"
             class="form-control"
           >
@@ -52,50 +57,61 @@
         <div 
           class="form-group"
         >
+          <label for="dateToPay">Date to pay</label>
           <input
+            id="dateToPay"
             v-model="dateToPay"
             class="form-control"
             type="text"
             name="dateToPay"
-            placeholder="Date to pay"
             required
           >
         </div>
         <div
           class="form-group"
         >
+          <label for="paidIn">Paid in</label>
           <input
+            id="paidIn"
             v-model="paidIn"
             class="form-control"
             type="text"
             name="paidIn"
-            placeholder="Paid in"
             required
           >
         </div>
         <div 
           class="form-group"
         >
+          <label for="value">Value</label>
           <input
+            id="value"
             v-model="value"
             class="form-control"
             type="text"
             name="value"
-            placeholder="Value"
             required
           >
         </div>
         <div 
           class="form-group"
         >
-          <input
+          <label for="status">Status</label>
+          <select
+            id="status"
             v-model="status"
             class="form-control"
-            type="text"
-            name="status"
-            placeholder="Status"
-            required
           >
+            <option value="a-pagar">A pagar</option>
+            <option value="paga">Paga</option>
+            <option value="vencida">Vencida</option>
+            <!-- <option v-for="situation in situations"
+              :value="situation.id"
+              :key="situation.id"
+            >
+              {{ situation.description }}
+            </option> -->
+          </select>
         </div>
         <div 
           class="form-group"
@@ -148,7 +164,8 @@ export default {
       dateToPay: '',
       paidIn: '',
       value: '',
-      status: '',
+      status: ''
+      // selectedSituation: null
     }
   },
   computed: {
