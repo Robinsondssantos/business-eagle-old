@@ -24,7 +24,7 @@
       <tbody>
         <tr v-for="expense in expenses" :key="expense.id">
           <td v-for="key in columns" :key="key">
-            {{ expense[key] }}
+            {{ expense[key]}}
           </td>
           <td>
             <app-update-expense
@@ -58,14 +58,20 @@ export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'description']
+      columns: [
+        'id', 
+        'description', 
+        'date_to_pay', 
+        'paid_in',
+        'value'
+      ]
     }
   },
   computed: {
     ...mapGetters({
       expenses: 'expenses'
     })
-  },  
+  },
   created () {
     this.fetchExpenses()
   },
@@ -92,7 +98,7 @@ export default {
   }
 
   th, td {
-    padding: 8px;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
   }
 
