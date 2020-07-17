@@ -63,7 +63,7 @@
   }
 
   form {
-    padding: 40px
+    padding: 10px
   }
 
   .form-group {

@@ -16,13 +16,25 @@
         <div
           class="form-group"
         >
-          <button
-            class="btn btn-secondary"
-            type="submit"
-          >
-            <div v-if="loading" class="spinner"></div>
-            <div v-else>DELETE</div>
-          </button>
+          <div class="group-actions">
+            <dir>
+              <button
+                class="btn btn-cancel"
+                type="button"
+              >
+                Cancel
+              </button>
+            </dir>
+            <div class="action">
+              <button
+                class="btn btn-delete"
+                type="submit"
+              >
+                <div v-if="loading" class="spinner"></div>
+                <div v-else>Delete</div>
+              </button>
+            </div>
+          </div>
         </div>
       </form>
     </template>
@@ -31,7 +43,7 @@
 
 <script>
 
-import BaseDeleteDialog from '@/components/Dialog/BaseDeleteDialog'
+import BaseDeleteDialog from '@/components/Dialog/BaseDeleteDialog2'
 
 export default {
   components: {
@@ -59,3 +71,36 @@ export default {
   }  
 }
 </script>
+
+<style scoped>
+
+  form {
+    padding: 0;
+  }
+
+  .action {
+    margin-left: 10px;
+  }
+
+  .group-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .btn-cancel {
+    /* color: rgba(255, 255, 255, 0.90); */
+    color: #0056ce;
+    border: solid 1px #0056ce;
+    background-color: #ffffff;
+  }
+
+  .btn-delete {
+    color: rgba(255, 255, 255, 0.90);
+    border: solid 1px #0056ce;
+    background-color: #0056ce;
+  }    
+
+</style>
