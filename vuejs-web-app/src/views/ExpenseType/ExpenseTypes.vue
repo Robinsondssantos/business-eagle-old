@@ -9,36 +9,38 @@
         </app-create-expense-type>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key in columns" :key="key">
-            {{ key }}
-          </th>
-          <th>
-          </th>
-          <th>
-          </th>          
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="expenseType in expenseTypes" :key="expenseType.id">
-          <td v-for="key in columns" :key="key">
-            {{ expenseType[key] }}
-          </td>
-          <td>
-            <app-update-expense-type
-              :expenseType="expenseType"
-            ></app-update-expense-type>
-          </td> 
-          <td>            
-            <app-delete-expense-type
-              :expenseType="expenseType"
-            ></app-delete-expense-type>
-          </td>          
-        </tr>
-      </tbody>
-    </table>  
+    <div class="table-x-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns" :key="key">
+              {{ key }}
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>          
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="expenseType in expenseTypes" :key="expenseType.id">
+            <td v-for="key in columns" :key="key">
+              {{ expenseType[key] }}
+            </td>
+            <td>
+              <app-update-expense-type
+                :expenseType="expenseType"
+              ></app-update-expense-type>
+            </td> 
+            <td>            
+              <app-delete-expense-type
+                :expenseType="expenseType"
+              ></app-delete-expense-type>
+            </td>          
+          </tr>
+        </tbody>
+      </table>  
+    </div>
   </div>
 </template>
 

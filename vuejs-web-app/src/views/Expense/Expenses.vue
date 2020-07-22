@@ -11,48 +11,50 @@
         </app-create-expense>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key in columns" :key="key">
-            {{ key }}
-          </th>
-          <th>
-          </th>
-          <th>            
-          </th>                    
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="expense in expenses" :key="expense.id">
-          <td>{{ expense.id }}</td>
-          <td>{{ expense.description }}</td>
-          <td>{{ expense.status }}</td>
-          <td>{{ expense.date_to_pay | date }}</td>
-          <td>{{ expense.paid_in | date }}</td>
-          <td>{{ expense.value | money }}</td>
-          <!-- <td>{{ expense.createdAt }}</td> -->
-          <!-- <td v-for="key in columns" :key="key">
-            <div>
-              {{ expense.createdAt }}
-            </div>
-            <div>
-              {{ expense[key] }}
-            </div>
-          </td> -->
-          <td>
-            <app-update-expense
-              :expense="expense"
-            ></app-update-expense>
-          </td>          
-          <td>
-            <app-delete-expense
-              :expense="expense"
-            ></app-delete-expense>            
-          </td>          
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-x-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns" :key="key">
+              {{ key }}
+            </th>
+            <th>
+            </th>
+            <th>            
+            </th>                    
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="expense in expenses" :key="expense.id">
+            <td>{{ expense.id }}</td>
+            <td>{{ expense.description }}</td>
+            <td>{{ expense.status | formatExpenseStatus }} </td>
+            <td>{{ expense.date_to_pay | date }}</td>
+            <td>{{ expense.paid_in | date }}</td>
+            <td>{{ expense.value | money }}</td>
+            <!-- <td>{{ expense.createdAt }}</td> -->
+            <!-- <td v-for="key in columns" :key="key">
+              <div>
+                {{ expense.createdAt }}
+              </div>
+              <div>
+                {{ expense[key] }}
+              </div>
+            </td> -->
+            <td>
+              <app-update-expense
+                :expense="expense"
+              ></app-update-expense>
+            </td>          
+            <td>
+              <app-delete-expense
+                :expense="expense"
+              ></app-delete-expense>            
+            </td>          
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -79,6 +81,16 @@ export default {
         currency: 'BRL',
         minimumFractionDigits: 2
       })
+    },
+    formatExpenseStatus (v) {
+      if (v === 0) {
+        return 'A pagar'
+      } else if (v === 1) {
+        return 'Paga'
+      } else if (v === 2) {
+        return 'Vencida'
+      }
+      return v
     }
   },
   data () {

@@ -100,7 +100,7 @@
           <select
             id="status"
             name="status"
-            v-model="status"
+            v-model="selectedStatus"
             class="form-control"
           >
             <option value="0">A pagar</option>
@@ -165,8 +165,7 @@ export default {
       dateToPay: '',
       paidIn: '',
       value: '',
-      status: ''
-      // selectedSituation: null
+      selectedStatus: ''
     }
   },
   computed: {
@@ -213,7 +212,7 @@ export default {
         // paid_in: this.paidIn,
         paid_in: new Date(),
         value: this.value,
-        status: this.status,
+        status: this.selectedStatus,
       })
         .then(() => {})
         .catch(err => console.log(err))

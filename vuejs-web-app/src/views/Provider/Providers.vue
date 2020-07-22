@@ -9,37 +9,39 @@
         </app-create-provider-dialog>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key in columns" :key="key">
-            {{ key }}
-          </th>
-          <th>
-          </th>
-          <th>
-          </th>          
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="provider in providers" :key="provider.id">
+    <div class="table-x-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns" :key="key">
+              {{ key }}
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>          
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="provider in providers" :key="provider.id">
 
-          <td v-for="key in columns" :key="key">
-            {{ provider[key] }}
-          </td>
-          <td>
-            <app-update-provider-dialog
-              :provider="provider"
-            ></app-update-provider-dialog>
-          </td>          
-          <td>
-            <app-delete-provider-dialog
-              :provider="provider"
-            ></app-delete-provider-dialog>            
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <td v-for="key in columns" :key="key">
+              {{ provider[key] }}
+            </td>
+            <td>
+              <app-update-provider-dialog
+                :provider="provider"
+              ></app-update-provider-dialog>
+            </td>          
+            <td>
+              <app-delete-provider-dialog
+                :provider="provider"
+              ></app-delete-provider-dialog>            
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 

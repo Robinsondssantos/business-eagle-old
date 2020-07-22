@@ -9,36 +9,38 @@
         </app-create-income>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key in columns" :key="key">
-            {{ key }}
-          </th>
-          <th>
-          </th>
-          <th>            
-          </th>                    
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="income in incomes" :key="income.id">
-          <td v-for="key in columns" :key="key">
-            {{ income[key] }}
-          </td>
-          <td>
-            <app-update-income
-              :income="income"
-            ></app-update-income>
-          </td>          
-          <td>
-            <app-delete-income
-              :income="income"
-            ></app-delete-income>            
-          </td>          
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-x-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns" :key="key">
+              {{ key }}
+            </th>
+            <th>
+            </th>
+            <th>            
+            </th>                    
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="income in incomes" :key="income.id">
+            <td v-for="key in columns" :key="key">
+              {{ income[key] }}
+            </td>
+            <td>
+              <app-update-income
+                :income="income"
+              ></app-update-income>
+            </td>          
+            <td>
+              <app-delete-income
+                :income="income"
+              ></app-delete-income>            
+            </td>          
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -116,6 +118,10 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 30px;
+  }
+
+  .table-x-scroll {
+    overflow-x: auto;
   }
 
 </style>

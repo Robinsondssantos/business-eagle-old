@@ -9,36 +9,38 @@
         </app-create-income-type>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key in columns" :key="key">
-            {{ key }}
-          </th>
-          <th>
-          </th>
-          <th>
-          </th>          
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="incomeType in incomeTypes" :key="incomeType.id">
-          <td v-for="key in columns" :key="key">
-            {{ incomeType[key] }}
-          </td>
-          <td>
-            <app-update-income-type
-              :incomeType="incomeType"
-            ></app-update-income-type>
-          </td> 
-          <td>            
-            <app-delete-income-type
-              :incomeType="incomeType"
-            ></app-delete-income-type>
-          </td>          
-        </tr>
-      </tbody>
-    </table>  
+    <div class="table-x-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns" :key="key">
+              {{ key }}
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>          
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="incomeType in incomeTypes" :key="incomeType.id">
+            <td v-for="key in columns" :key="key">
+              {{ incomeType[key] }}
+            </td>
+            <td>
+              <app-update-income-type
+                :incomeType="incomeType"
+              ></app-update-income-type>
+            </td> 
+            <td>            
+              <app-delete-income-type
+                :incomeType="incomeType"
+              ></app-delete-income-type>
+            </td>          
+          </tr>
+        </tbody>
+      </table>
+    </div>  
   </div>
 </template>
 

@@ -120,6 +120,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }  
+  }
+
+  .table-x-scroll {
+    overflow-x: auto;
+  }    
 
 </style>

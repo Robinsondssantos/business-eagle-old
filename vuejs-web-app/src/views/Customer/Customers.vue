@@ -9,36 +9,38 @@
         </app-create-customer-dialog>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="key in columns" :key="key">
-            {{ key }}
-          </th>
-          <th>            
-          </th>
-          <th>            
-          </th>          
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="customer in customers" :key="customer.id">
-          <td v-for="key in columns" :key="key">
-            {{ customer[key] }}
-          </td>
-          <td>
-            <app-update-customer-dialog
-              :customer="customer"
-            ></app-update-customer-dialog>
-          </td>          
-          <td>
-            <app-delete-customer-dialog
-              :customer="customer"
-            ></app-delete-customer-dialog>              
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-x-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns" :key="key">
+              {{ key }}
+            </th>
+            <th>            
+            </th>
+            <th>            
+            </th>          
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="customer in customers" :key="customer.id">
+            <td v-for="key in columns" :key="key">
+              {{ customer[key] }}
+            </td>
+            <td>
+              <app-update-customer-dialog
+                :customer="customer"
+              ></app-update-customer-dialog>
+            </td>          
+            <td>
+              <app-delete-customer-dialog
+                :customer="customer"
+              ></app-delete-customer-dialog>              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
