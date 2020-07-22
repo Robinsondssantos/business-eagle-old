@@ -99,12 +99,13 @@
           <label for="status">Status</label>
           <select
             id="status"
+            name="status"
             v-model="status"
             class="form-control"
           >
-            <option value="a-pagar">A pagar</option>
-            <option value="paga">Paga</option>
-            <option value="vencida">Vencida</option>
+            <option value="0">A pagar</option>
+            <option value="1">Paga</option>
+            <option value="2">Vencida</option>
             <!-- <option v-for="situation in situations"
               :value="situation.id"
               :key="situation.id"
@@ -212,7 +213,7 @@ export default {
         // paid_in: this.paidIn,
         paid_in: new Date(),
         value: this.value,
-        // status: this.status,
+        status: this.status,
       })
         .then(() => {})
         .catch(err => console.log(err))

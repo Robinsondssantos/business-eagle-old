@@ -88,14 +88,17 @@
         <div 
           class="form-group"
         >
-          <input
+          <label for="status">Status</label>
+          <select 
+            id="status"
+            name="status"
             v-model="status"
             class="form-control"
-            type="text"
-            name="status"
-            placeholder="Status"
-            required
           >
+            <option value="0">A receber</option>
+            <option value="1">Recebido</option>
+            <option value="2">Vencido</option>
+          </select>
         </div>
         <div 
           class="form-group"
@@ -195,7 +198,7 @@ export default {
         // paid_in: this.receivedIn,
         paid_in: new Date(),
         value: this.value,
-        // status: this.status,
+        status: this.status,
       })
         .then(() => {})
         .catch(err => console.log(err))

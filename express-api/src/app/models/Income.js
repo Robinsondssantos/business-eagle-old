@@ -7,7 +7,8 @@ class Income extends Model {
         description: Sequelize.STRING,
         date_to_receive: Sequelize.DATE,
         received_in: Sequelize.DATE,
-        value: Sequelize.DECIMAL(20, 2)
+        value: Sequelize.DECIMAL(20, 2),
+        status: Sequelize.INTEGER
       },
       {
         sequelize,

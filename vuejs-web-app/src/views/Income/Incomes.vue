@@ -58,7 +58,14 @@ export default {
   data () {
     return {
       loading: false,
-      columns: ['id', 'description']
+      columns: [
+        'id', 
+        'description',
+        'status',
+        'date_to_receive',
+        'received_in',
+        'value'
+      ]
     }
   },
   computed: {

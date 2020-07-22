@@ -14,7 +14,7 @@ class ExpenseController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      // status
+      status: Yup.number().required('status is required'),
       value: Yup.number().required('value is required'),
       paid_in: Yup.date()
         .required('paid_in is required'),
@@ -40,7 +40,8 @@ class ExpenseController {
       type_id, 
       date_to_pay,
       paid_in,
-      value 
+      value,
+      status 
     } = req.body;
 
     try {
@@ -50,7 +51,8 @@ class ExpenseController {
         type_id,
         date_to_pay,
         paid_in,
-        value
+        value,
+        status
       });
       return res.json(newExpense);
     } catch(err) {
@@ -62,7 +64,7 @@ class ExpenseController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      // status
+      status: Yup.number().required('status is required'),
       value: Yup.number().required('value is required'),
       paid_in: Yup.date()
         .required('paid_in is required'),
@@ -101,7 +103,8 @@ class ExpenseController {
       type_id, 
       date_to_pay,
       paid_in,
-      value 
+      value,
+      status 
     } = req.body;
 
     let updatedExpense = null;
@@ -114,6 +117,7 @@ class ExpenseController {
         date_to_pay,
         paid_in,
         value,
+        status
       })
     } catch(err) {
       console.log(err)

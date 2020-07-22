@@ -14,7 +14,7 @@ class IncomeController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      // status
+      status: Yup.number().required('status is required'),
       value: Yup.number().required('value is required'),
       received_in: Yup.date()
         .required('received_in is required'),
@@ -40,7 +40,8 @@ class IncomeController {
       type_id,
       date_to_receive,
       received_in,
-      value
+      value,
+      status
     } = req.body;
 
     try {
@@ -50,7 +51,8 @@ class IncomeController {
         type_id,
         date_to_receive,
         received_in,
-        value
+        value,
+        status
       });
       return res.json(newIncome);
     } catch(err) {
@@ -62,7 +64,7 @@ class IncomeController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      // status
+      status: Yup.number().required('status is required'),
       value: Yup.number().required('value is required'),
       received_in: Yup.date()
         .required('received_in is required'),
@@ -101,7 +103,8 @@ class IncomeController {
       type_id,
       date_to_receive,
       received_in,
-      value
+      value,
+      status
     } = req.body;
     
     let updatedIncome = null;
@@ -113,7 +116,8 @@ class IncomeController {
         type_id,
         date_to_receive,
         received_in,
-        value,        
+        value,
+        status        
       });
     } catch(err) {
       console.log(err)
