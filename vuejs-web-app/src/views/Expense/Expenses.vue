@@ -4,7 +4,9 @@
       <div>
         Expenses
       </div>
-      <div>
+      <div class="btn-actions">
+        <!-- <app-create-expense>          
+        </app-create-expense> -->
         <app-create-expense>          
         </app-create-expense>
       </div>
@@ -23,9 +25,21 @@
       </thead>
       <tbody>
         <tr v-for="expense in expenses" :key="expense.id">
-          <td v-for="key in columns" :key="key">
-            {{ expense[key]}}
-          </td>
+          <td>{{ expense.id }}</td>
+          <td>{{ expense.description }}</td>
+          <td>{{ expense.status }}</td>
+          <td>{{ expense.date_to_pay | date }}</td>
+          <td>{{ expense.paid_in | date }}</td>
+          <td>{{ expense.value | money }}</td>
+          <!-- <td>{{ expense.createdAt }}</td> -->
+          <!-- <td v-for="key in columns" :key="key">
+            <div>
+              {{ expense.createdAt }}
+            </div>
+            <div>
+              {{ expense[key] }}
+            </div>
+          </td> -->
           <td>
             <app-update-expense
               :expense="expense"
@@ -55,12 +69,25 @@ export default {
     'app-update-expense': UpdateExpense,
     'app-delete-expense': DeleteExpense
   },
+  filters: {
+    date (v) {
+      return new Date(v).toLocaleDateString('pt-br')
+    },
+    money (v) {
+      return Number(v).toLocaleString('pt-br', { 
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+      })
+    }
+  },
   data () {
     return {
       loading: false,
       columns: [
         'id', 
-        'description', 
+        'description',
+        'status', 
         'date_to_pay', 
         'paid_in',
         'value'
@@ -71,6 +98,11 @@ export default {
     ...mapGetters({
       expenses: 'expenses'
     })
+  },
+  watch: {
+    expenses (v) {
+      console.log('v:', v)
+    }
   },
   created () {
     this.fetchExpenses()
@@ -116,5 +148,9 @@ export default {
     justify-content: space-between;
     margin-bottom: 30px;
   }
+
+  /* .btn-actions {
+    display: flex;
+  } */
 
 </style>
