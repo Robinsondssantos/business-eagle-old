@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="month-info">
+      <span>&lt;</span>
       <span>Março</span>
+      <span>&gt;</span>
     </div>    
     <div class="balance-card">
       <span class="balance-label">Saldo</span>
@@ -13,6 +15,7 @@
       <div class="income-card">
         <span class="income-label">Receitas</span>
         <span class="income-value">R$ 550,00</span>
+        <span>+</span>
       </div>
     </router-link>
     <router-link
@@ -21,6 +24,7 @@
       <div class="expense-card">
         <span class="expense-label">Despesas</span>
         <span class="expense-value">R$ 500,00</span>
+        <span>+</span>
       </div>
     </router-link>
   </div>

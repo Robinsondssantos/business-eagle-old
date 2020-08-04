@@ -24,8 +24,8 @@
 
   body {    
     /* background: #ebf5ff; */
-    /* background: #004cb2;     */
-    background: #fefeff;    
+    background: #004cb2;    
+    /* background: #fefeff;     */
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -56,7 +56,8 @@
 
   .month-info {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     font-size: 12px;
     color: #bbb;
     /* font-weight: bold; */

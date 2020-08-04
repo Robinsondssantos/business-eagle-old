@@ -95,7 +95,7 @@ export default {
   }
 
   th, td {
-    padding: 10px;
+    padding: 14px;
     border-bottom: 1px solid #ddd;
   }
 

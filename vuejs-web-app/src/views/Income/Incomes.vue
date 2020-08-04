@@ -24,9 +24,15 @@
         </thead>
         <tbody>
           <tr v-for="income in incomes" :key="income.id">
-            <td v-for="key in columns" :key="key">
+            <td>{{ income.id }}</td>
+            <td>{{ income.description }}</td>
+            <td>{{ income.status | formatIncomeStatus }}</td>
+            <td>{{ income.date_to_receive | date }}</td>
+            <td>{{ income.received_in | date }}</td>
+            <td>{{ income.value | money }}</td>
+            <!-- <td v-for="key in columns" :key="key">
               {{ income[key] }}
-            </td>
+            </td> -->
             <td>
               <app-update-income
                 :income="income"
@@ -56,6 +62,28 @@ export default {
     'app-create-income': CreateIncome,
     'app-update-income': UpdateIncome,
     'app-delete-income': DeleteIncome
+  },
+  filters: {
+    date (v) {
+      return new Date(v).toLocaleDateString('pt-br')
+    },
+    money (v) {
+      return Number(v).toLocaleString('pt-br', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumIntegerDigits: 2
+      })
+    },
+    formatIncomeStatus (v) {
+      if (v === 0) {
+        return 'A receber'
+      } else if (v === 1) {
+        return 'Recebido'
+      } else if (v ===  2) {
+        return 'Vencido'
+      }
+      return v
+    }
   },
   data () {
     return {
@@ -101,7 +129,7 @@ export default {
   }
 
   th, td {
-    padding: 10px;
+    padding: 14px;
     border-bottom: 1px solid #ddd;
   }
 

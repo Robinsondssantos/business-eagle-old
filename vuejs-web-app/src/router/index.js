@@ -13,6 +13,11 @@ export default new Router({
       beforeEnter: authGuard,
       children: [
         {
+          path: 'main',
+          name: 'main',
+          component: () => import('../views/MainOLD.vue'),
+        },        
+        {
           path: 'dashboard',
           name: 'Dashboard',
           component: () => import('../views/Dashboard.vue'),
@@ -23,6 +28,12 @@ export default new Router({
           component: () => import('../views/Income/Incomes.vue'),
           props: true,
         },
+        {
+          path: 'incomesold',
+          name: 'Incomesold',
+          component: () => import('../views/IncomesOLD.vue'),
+          props: true,
+        },        
         {
           path: 'create_income',
           name: 'CreateIncome',
@@ -51,7 +62,13 @@ export default new Router({
           name: 'EditIncomeType',
           component: () => import('../views/EditIncomeType.vue'),
           props: true,
-        },                 
+        },
+        {
+          path: 'expensesold',
+          name: 'Expensesold',
+          component: () => import('../views/ExpensesOLD.vue'),
+          props: true,
+        },                         
         {
           path: 'expenses',
           name: 'Expenses',

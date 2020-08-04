@@ -9,7 +9,7 @@ import ExpenseTypeController from './app/controllers/ExpenseTypeController';
 import ExpenseController from './app/controllers/ExpenseController';
 
 import IncomeTypeController from './app/controllers/IncomeTypeController';
-import IncomeController from './app/controllers/IncomeTypeController';
+import IncomeController from './app/controllers/IncomeController';
 
 import CustomerController from './app/controllers/CustomerController';
 import ProviderController from './app/controllers/ProviderController';

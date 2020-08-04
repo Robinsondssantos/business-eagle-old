@@ -5,6 +5,14 @@
         <div>
           <button
             class="btn btn-primary btn-main"
+            @click="goToMain"
+          >
+            Main
+          </button>
+        </div>        
+        <div>
+          <button
+            class="btn btn-primary btn-main"
             @click="goToProviders"
           >
             Provider
@@ -76,6 +84,9 @@ export default {
     console.log('created - main')
   },
   methods: {
+    goToMain () {
+      this.$router.push('main')
+    },    
     goToProviders () {
       this.$router.push('providers')
     },

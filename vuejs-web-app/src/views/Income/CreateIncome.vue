@@ -11,6 +11,7 @@
         <div 
           class="form-group"
         >
+          <label for="description">Description</label>
           <input
             v-model="description"
             class="form-control"
@@ -22,6 +23,7 @@
         <div 
           class="form-group"
         >
+          <label for="customer"></label>
           <select
             v-model="selectedCustomer"
             class="form-control"
@@ -152,6 +154,7 @@ export default {
       receivedIn: '',
       value: '',
       status: '',
+      selectedStatus: ''
     }
   },
   computed: {
@@ -198,7 +201,7 @@ export default {
         // paid_in: this.receivedIn,
         paid_in: new Date(),
         value: this.value,
-        status: this.status,
+        status: this.selectedStatus
       })
         .then(() => {})
         .catch(err => console.log(err))
