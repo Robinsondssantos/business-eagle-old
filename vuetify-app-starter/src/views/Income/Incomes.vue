@@ -8,7 +8,7 @@
         <v-card>
           <v-card-title>
             <v-spacer></v-spacer>
-            <v-btn depressed small>Adicionar</v-btn>
+            <app-create-income></app-create-income>
           </v-card-title>
           <v-card-text>
             <v-data-table>
@@ -19,3 +19,17 @@
     </v-layout>
   </v-container>
 </template>
+
+<script>
+
+import CreateIncome from '@/views/Income/CreateIncome'
+
+export default {
+  components: {
+    'app-create-income': CreateIncome
+  },
+  data () {
+    return {}
+  }
+}
+</script>

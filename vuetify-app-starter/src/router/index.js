@@ -11,8 +11,8 @@ const routes = [
     component: Home,
     children: [
       {
-        path: 'ContasAReceber',
-        component: () => import('@/views/ContasAReceber.vue')
+        path: 'Incomes',
+        component: () => import('@/views/Income/Incomes.vue')
       }
     ]
   },
