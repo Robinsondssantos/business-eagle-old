@@ -88,6 +88,6 @@ export default {
           })
           .finally(() => {})
       })
-    }    
+    }
   }
 }
