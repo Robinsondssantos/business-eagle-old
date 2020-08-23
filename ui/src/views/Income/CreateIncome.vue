@@ -1,45 +1,51 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent max-width="600">
+    <v-dialog v-model="dialog" persistent max-width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          outlined
           color="primary"
           small
-          depressed
           v-bind="attrs"
           v-on="on"
         >
-          Add
+          Adicionar
         </v-btn>
       </template>
 
       <v-card>
         <v-card-title>
-          <span class="headline">Add</span>
+          <span class="headline">Adicionar entrada</span>
         </v-card-title>
-
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Description"></v-text-field>
+                <v-text-field label="Descrição"></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Type"></v-text-field>
+                <v-text-field label="Tipo"></v-text-field>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
-
-        <v-divider></v-divider>
-
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
+            text
+            small
             color="primary"
             @click="dialog = false"
           >
-            Save
+            Cancelar
+          </v-btn>
+          <v-btn
+            outlined
+            small
+            color="primary"
+            @click="dialog = false"
+          >
+            Salvar
           </v-btn>
         </v-card-actions>
       </v-card>

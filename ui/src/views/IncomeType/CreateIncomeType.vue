@@ -1,15 +1,16 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent max-width="600">
+    <v-dialog v-model="dialog" persistent max-width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          outlined
           color="primary"
           small
           depressed
           v-bind="attrs"
           v-on="on"
         >
-          Add
+          Adicionar
         </v-btn>
       </template>
 
@@ -19,30 +20,35 @@
         </v-card-title>
 
         <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field label="Descrição"></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
+          <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
+          >
+            <v-text-field
+              label="Descrição"
+              v-model="description"
+              required
+            ></v-text-field>
+          </v-form>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
+            text
+            small
             class="mb-2"
-            outlined
-            depressed
             color="primary"
             @click="dialog = false"
           >
             Cancelar
           </v-btn>
           <v-btn
+            outlined
+            small
             class="mb-2 mr-2"
-            depressed
             color="primary"
-            @click="dialog = false"
+            @click="createIncomeType"
           >
             Salvar
           </v-btn>
@@ -56,7 +62,23 @@
 export default {
   data () {
     return {
-      dialog: false
+      dialog: false,
+      loading: false,
+      valid: false,
+      description: ''
+    }
+  },
+  methods: {
+    async createIncomeType () {
+      console.log('heheheh')
+      try {
+        this.loading = true
+        await this.$store.dispatch('createIncomeType')
+      } catch (err) {
+        console.log(err)
+      } finally {
+        this.loading = false
+      }
     }
   }
 }
